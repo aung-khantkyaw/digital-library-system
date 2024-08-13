@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Digital Library System</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+
+    <link rel="shortcut icon" href="../assets/img/online-library.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="../assets/img/online-library.png" alt="" class="d-lg-none" />
+          <span class="d-none d-lg-block">Digital Library System</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+      </div>
+      <!-- End Logo -->
+
+      <div class="search-bar">
+        <form
+          class="search-form d-flex align-items-center"
+          method="POST"
+          action="#"
+        >
+          <input
+            type="text"
+            name="query"
+            placeholder="Search"
+            title="Enter search keyword"
+          />
+          <button type="submit" title="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+      <!-- End Search Bar -->
+
+      <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+          <li class="nav-item d-block d-lg-none">
+            <a class="nav-link nav-icon search-bar-toggle" href="#">
+              <i class="bi bi-search"></i>
+            </a>
+          </li>
+          <!-- End Search Icon-->
+
+          <li class="nav-item dropdown pe-3">
+            <a
+              class="nav-link nav-profile d-flex align-items-center pe-0"
+              href="#"
+              data-bs-toggle="dropdown"
+            >
+              <img
+                src="../assets/img/profile-img.jpg"
+                alt="Profile"
+                class="rounded-circle"
+              />
+              <span class="d-none d-md-block dropdown-toggle ps-2"
+                >K. Anderson</span
+              > </a
+            ><!-- End Profile Iamge Icon -->
+
+            <ul
+              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+            >
+              <li class="dropdown-header">
+                <h6>Kevin Anderson</h6>
+                <span>Web Designer</span>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  href="users-profile.html"
+                >
+                  <i class="bi bi-person"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  href="users-profile.html"
+                >
+                  <i class="bi bi-gear"></i>
+                  <span>Account Settings</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  href="pages-faq.html"
+                >
+                  <i class="bi bi-question-circle"></i>
+                  <span>Need Help?</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            </ul>
+            <!-- End Profile Dropdown Items -->
+          </li>
+          <!-- End Profile Nav -->
+        </ul>
+      </nav>
+      <!-- End Icons Navigation -->
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="../dashboard.html">
+            <i class="ri-layout-3-line"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <!-- End Dashboard Nav -->
+
+        <li class="nav-heading">Book Details</li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="books.html">
+            <i class="ri-git-repository-line"></i>
+            <span>Books</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="authors.html">
+            <i class="ri-account-pin-box-line"></i>
+            <span>Author</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="genre.html">
+            <i class="ri-list-check-2"></i>
+            <span>Genre</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="publisher.html">
+            <i class="ri-pen-nib-line"></i>
+            <span>Publisher</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="shelf_location.html">
+            <i class="ri-map-pin-line"></i>
+            <span>Shelf Location</span>
+          </a>
+        </li>
+        
+        <!-- End Book Nav -->
+
+        <li class="nav-heading">Users</li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="../Users/add-user.html">
+            <i class="ri-user-received-2-line"></i>
+            <span>New Users</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="../Users/all-users.html">
+            <i class="ri-team-line"></i>
+            <span>All Users</span>
+          </a>
+        </li>
+
+        <!-- End User Nav -->
+
+        <li class="nav-heading">Borrow</li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="../Borrow/all-borrow.html">
+            <i class="ri-list-settings-line"></i>
+            <span>Borrow List</span>
+          </a>
+        </li>
+
+       
+      </ul>
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item">Books Details</li>
+            <li class="breadcrumb-item active">Publisher</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+     <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Author List</h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>Cover</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Price per day</th>
+                      <th>Quantity</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-1.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>အစဉ်သဖြင့်</td>
+                      <td>ငြိမ်းကျော်</td>
+                      <td>MMK - 150</td>
+                      <td>100</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="../assets/img/news-2.jpg"
+                          alt="Book Cover"
+                          class="rounded"
+                          width="50"
+                        />
+                      </td>
+                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
+                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
+                      <td>MMK - 250</td>
+                      <td>200</td>
+                      <td>
+                        <a href="#" class="btn btn-primary"
+                          ><i class="ri-edit-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-success"
+                          ><i class="ri-eye-line"></i
+                        ></a>
+                        <a href="#" class="btn btn-danger"
+                          ><i class="ri-delete-back-2-line"></i
+                        ></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Laziestant</span></strong
+        >. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://aung-khantkyaw.github.io">Laziestant</a>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="../assets/vendor/echarts/echarts.min.js"></script>
+    <script src="../assets/vendor/quill/quill.js"></script>
+    <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
