@@ -1,16 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
-    <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+<html>
+<head>
+<title>Login - Digital Library System</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="assets/img/online-library.png" rel="icon" />
+  <link href="assets/img/online-library.png" rel="apple-touch-icon" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect" />
@@ -103,7 +102,7 @@
                       <div class="col-12">
                         <p class="small mb-0">
                           Don't have account?
-                          <a href="register.html">Create an account</a>
+                          <a href="registration.jsp">Create an account</a>
                         </p>
                       </div>
                     </form>
@@ -135,5 +134,6 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-  </body>
+
+</body>
 </html>

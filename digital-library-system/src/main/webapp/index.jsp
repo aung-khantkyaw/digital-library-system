@@ -28,16 +28,15 @@
           </a>
         </div>
         <div class="flex flex-1 justify-end">
-          <!-- <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
+          <a href="login.jsp" class="text-sm font-semibold leading-6 text-gray-900"
               >Log in <span aria-hidden="true">&rarr;</span></a
-            > -->
-          <div class="ml-4 flex items-center md:ml-6">
+            > 
+           <div class="ml-4 flex items-center md:ml-6">
             
 
-             <a href="dashboard.html"
+             <a href="admin/dashboard.jsp"
               class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Dashboard</a>
 
-            <!-- Profile dropdown -->
             <div class="relative ml-3">
               <div>
                 <div
@@ -100,7 +99,7 @@
             enhance your research and reading experience.
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a href="register.html"
+            <a href="registration.jsp"
               class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
               a new account</a>
           </div>
