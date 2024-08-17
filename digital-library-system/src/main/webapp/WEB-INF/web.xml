@@ -9,4 +9,24 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UserController</display-name>
+    <servlet-name>UserController</servlet-name>
+    <servlet-class>controller.UserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserController</servlet-name>
+    <url-pattern>/UserController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BookController</display-name>
+    <servlet-name>BookController</servlet-name>
+    <servlet-class>controller.BookController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookController</servlet-name>
+    <url-pattern>/BookController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -60,7 +60,8 @@
                       </p>
                     </div>
 
-                    <form class="row g-3 needs-validation" novalidate>
+                     <form class="row g-3 needs-validation" action="UserController" method="post">
+                      <input type="hidden" name="action" value="login">
                       <div class="col-12">
                         <label for="yourUsername" class="form-label"
                           >Email</label

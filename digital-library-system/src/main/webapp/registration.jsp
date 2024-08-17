@@ -45,7 +45,8 @@
                                     <h5 class="card-title">Create an Account</h5>
 
                                     <!-- Multi Columns Form -->
-                                    <form class="row g-3">
+                                    <form class="row g-3" action="UserController" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="action" value="add">
                                         <div class="col-md-12">
                                             <label for="inputProfile" class="form-label">Your Profile</label>
                                             <input class="form-control" type="file" id="inputProfile">

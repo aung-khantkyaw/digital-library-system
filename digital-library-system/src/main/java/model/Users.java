@@ -5,16 +5,19 @@ public class Users {
 	private String username;
 	private String password;
 	private String email;
-	private int phone_number;
+	private String phone_number;
 	private String profile;
 	private String address;
 	private String role;
 	private String status;
 	
-	public Users(int user_id, String username, String password, String email, int phone_number, String profile,
-			String address, String role, String status) {
+	public Users() {
 		super();
-		this.user_id = user_id;
+	}	
+	
+	public Users(String username, String password, String email, String phone_number, String profile, String address,
+			String role, String status) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -57,11 +60,11 @@ public class Users {
 		this.email = email;
 	}
 
-	public int getPhone_number() {
+	public String getPhone_number() {
 		return phone_number;
 	}
 
-	public void setPhone_number(int phone_number) {
+	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
 

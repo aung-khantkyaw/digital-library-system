@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.Users" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,10 +29,12 @@
           </a>
         </div>
         <div class="flex flex-1 justify-end">
-          <a href="login.jsp" class="text-sm font-semibold leading-6 text-gray-900"
-              >Log in <span aria-hidden="true">&rarr;</span></a
-            > 
-           <div class="ml-4 flex items-center md:ml-6">
+        
+        <%
+		    Users user = (Users) session.getAttribute("user");
+		    if (user != null) {
+		        %>
+		        <div class="ml-4 flex items-center md:ml-6">
             
 
              <a href="admin/dashboard.jsp"
@@ -49,6 +52,17 @@
               </div>
             </div>
           </div>
+		        <%
+		    } else {
+		        %>
+		        	 <a href="login.jsp" class="text-sm font-semibold leading-6 text-gray-900"
+              >Log in <span aria-hidden="true">&rarr;</span></a
+            >  
+		        <%
+		    }
+		%>
+         
+           
       </nav>
     </header>
 
