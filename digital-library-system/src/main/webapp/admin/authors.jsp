@@ -69,7 +69,6 @@ if (isLoggedIn) {
 							<tr>
 								<th>Profile</th>
 								<th>Author Name</th>
-								<th>Book Quantity</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -86,9 +85,8 @@ if (isLoggedIn) {
 							<tr>
 								<td><img
 									src="../book_info_images/<%=author.getAuthor_profile()%>"
-									alt="Book Cover" class="rounded" width="50" /></td>
+									alt="<%=author.getAuthor_name()%>" class="rounded" width="50" /></td>
 								<td><%=author.getAuthor_name()%></td>
-								<td></td>
 								<td>
 
 									<button type="button" data-bs-toggle="modal"

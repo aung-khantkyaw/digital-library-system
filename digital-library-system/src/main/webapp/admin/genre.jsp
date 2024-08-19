@@ -37,7 +37,6 @@ if (isLoggedIn) {
 							<tr>
 								<th>Genre Id</th>
 								<th>Genre Name</th>
-								<th>Book Quantity</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -54,7 +53,6 @@ if (isLoggedIn) {
 							<tr>
 								<td><%=genre.getGenre_id()%></td>
 								<td><%=genre.getGenre_name()%></td>
-								<td></td>
 								<td><a
 									href="../BookInfoController?action=deleteGenre&genre_id=<%=genre.getGenre_id()%>"
 									class="btn btn-danger"><i class="ri-delete-back-2-line"></i></a></td>

@@ -2,7 +2,9 @@
 <%
 boolean isLoggedIn = Helper.isLoggedIn(session);
 if (isLoggedIn) {
-	int[] data = Helper.getLast7DaysData("user");
+	int[] userCount = Helper.getLast7DaysData("user");
+	int[] physicalCount = Helper.getLast7DaysData("physical_book");
+	int[] ebookCount = Helper.getLast7DaysData("ebook");
 %>
 <%@ include file="../layout/head.jsp"%>
 <%@ include file="../layout/header.jsp"%>
@@ -16,16 +18,14 @@ if (isLoggedIn) {
 				<div class="col-xxl-4 col-md-6">
 					<div class="card info-card sales-card">
 						<div class="card-body">
-							<h5 class="card-title">Books</h5>
+							<h5 class="card-title">Physical Books</h5>
 							<div class="d-flex align-items-center">
 								<div
 									class="card-icon rounded-circle d-flex align-items-center justify-content-center">
 									<i class="bi bi-book-half"></i>
 								</div>
 								<div class="ps-3">
-									<h6>145</h6>
-									<span class="text-success small pt-1 fw-bold">12%</span> <span
-										class="text-muted small pt-2 ps-1">increase</span>
+									<h6><%=Helper.countRows("physical_book")%> books</h6>
 								</div>
 							</div>
 						</div>
@@ -37,7 +37,7 @@ if (isLoggedIn) {
 				<div class="col-xxl-4 col-md-6">
 					<div class="card info-card revenue-card">
 						<div class="card-body">
-							<h5 class="card-title">Revenue</h5>
+							<h5 class="card-title">E Books</h5>
 
 							<div class="d-flex align-items-center">
 								<div
@@ -45,9 +45,7 @@ if (isLoggedIn) {
 									<i class="bi bi-cash"></i>
 								</div>
 								<div class="ps-3">
-									<h6>MMK 3,264</h6>
-									<span class="text-success small pt-1 fw-bold">8%</span> <span
-										class="text-muted small pt-2 ps-1">increase</span>
+									<h6><%=Helper.countRows("physical_book")%> books</h6>
 								</div>
 							</div>
 						</div>
@@ -67,9 +65,7 @@ if (isLoggedIn) {
 									<i class="bi bi-people"></i>
 								</div>
 								<div class="ps-3">
-									<h6><%=Helper.countRows("user")%></h6>
-									<span class="text-danger small pt-1 fw-bold">12%</span> <span
-										class="text-muted small pt-2 ps-1">decrease</span>
+									<h6><%=Helper.countRows("user")%> members</h6>
 								</div>
 							</div>
 						</div>
@@ -140,16 +136,16 @@ if (isLoggedIn) {
                           {
                             series: [
                               {
-                                name: "Books",
-                                data: [31, 40, 28, 51, 42, 82, 56],
+                                name: "Physical Book",
+                                data: [<%=physicalCount[6]%> , <%=physicalCount[5]%> , <%=physicalCount[4]%> , <%=physicalCount[3]%> , <%=physicalCount[2]%> , <%=physicalCount[1]%> , <%=physicalCount[0]%>],
                               },
                               {
-                                name: "Revenue",
-                                data: [11, 32, 45, 32, 34, 52, 41],
-                              },
+                                  name: "EBooks",
+                                  data: [<%=ebookCount[6]%> , <%=ebookCount[5]%> , <%=ebookCount[4]%> , <%=ebookCount[3]%> , <%=ebookCount[2]%> , <%=ebookCount[1]%> , <%=ebookCount[0]%>],
+                                },
                               {
                                 name: "Users",
-                                data: [<%=data[6]%> , <%=data[5]%> , <%=data[4]%> , <%=data[3]%> , <%=data[2]%> , <%=data[1]%> , <%=data[0]%>],
+                                data: [<%=userCount[6]%> , <%=userCount[5]%> , <%=userCount[4]%> , <%=userCount[3]%> , <%=userCount[2]%> , <%=userCount[1]%> , <%=userCount[0]%>],
                               },
                             ],
                             chart: {

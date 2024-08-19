@@ -206,7 +206,7 @@ if (user.getRole().equals("Admin")) {
 
 <main id="main" class="main">
 	<div class="pagetitle">
-		<h1>Books</h1>
+		<h1><%=Helper.capitalizeFirstLetter(Helper.getLastPartWithoutExtension(fullURL))%></h1>
 		<nav>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>

@@ -186,18 +186,33 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 							%>
 							<tr>
 								<td><img src="../book_info_images/<%=book.getCover()%>"
-									alt="Book Cover" class="rounded" width="50" /></td>
+									alt="<%=book.getTitle()%>" class="rounded" width="50" /></td>
 								<td><%=book.getTitle()%></td>
-								<td>
-									<%
-										for(Authors author : authors){
-											if(author.getAuthor_id().equals(book.getAuthor_id())){
-												System.out.print(author.getAuthor_name());
-											}
-										}
-									%>
-								</td>
-								<td>MMK - 150</td>
+
+								<%
+								for (Authors author : authors) {
+									if (author.getAuthor_id().equals(book.getAuthor_id())) {
+								%>
+								<td><%=author.getAuthor_name()%></td>
+								<%
+								}
+								}
+								for (Genre genre : genres) {
+								if (genre.getGenre_id().equals(book.getGenre_id())) {
+								%>
+								<td><%=genre.getGenre_name()%></td>
+								<%
+								}
+								}
+								for (Publishers publisher : publishers) {
+								if (publisher.getPublisher_id().equals(book.getPublisher_id())) {
+								%>
+								<td><%=publisher.getPublisher_name()%></td>
+								<%
+								}
+								}
+								%>
+
 								<td><%=book.getQuantity()%></td>
 								<td><button type="button" data-bs-toggle="modal"
 										data-bs-target="#editAuthor<%=book.getBook_id()%>"
@@ -371,7 +386,7 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 										<div class="modal-dialog modal-dialog-centered">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title"><%=book.getBook_id()%></h5>
+													<h5 class="modal-title"><%=book.getTitle()%></h5>
 													<button type="button" class="btn-close"
 														data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
@@ -384,8 +399,39 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 															</div>
 															<div class="col-md-8">
 																<div class="card-body">
-																	<h5 class="card-title"><%=book.getTitle()%></h5>
-																	<p class="card-text"><%=book.getAuthor_id()%></p>
+																	<ul class="list-group">
+																		<%
+																		for (Authors author : authors) {
+																			if (author.getAuthor_id().equals(book.getAuthor_id())) {
+																		%>
+																		<li class="list-group-item"><%=author.getAuthor_name()%></li>
+																		<%
+																		}
+																		}
+																		for (Genre genre : genres) {
+																		if (genre.getGenre_id().equals(book.getGenre_id())) {
+																		%>
+																		<li class="list-group-item"><%=genre.getGenre_name()%></li>
+																		<%
+																		}
+																		}
+																		for (Publishers publisher : publishers) {
+																		if (publisher.getPublisher_id().equals(book.getPublisher_id())) {
+																		%>
+																		<li class="list-group-item"><%=publisher.getPublisher_name()%></li>
+																		<%
+																		}
+																		}
+																		for (ShelfLocation shelfLocation : shelfLocations) {
+																		if (shelfLocation.getShelf_id().equals(book.getShelf_id())) {
+																		%>
+																		<li class="list-group-item"><%=shelfLocation.getShelf_location()%></li>
+																		<%
+																		}
+																		}
+																		%>
+																		<li class="list-group-item"><%= book.getPublish_date() %></li>
+																	</ul>
 																</div>
 															</div>
 														</div>
@@ -540,8 +586,8 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 								<th>Cover</th>
 								<th>Title</th>
 								<th>Author</th>
-								<th>Price per day</th>
-								<th>Quantity</th>
+								<th>Genre</th>
+								<th>Publisher</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -554,11 +600,31 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 							%>
 							<tr>
 								<td><img src="../book_info_images/<%=ebook.getCover()%>"
-									alt="Book Cover" class="rounded" width="50" /></td>
+									alt="<%=ebook.getTitle()%>" class="rounded" width="50" /></td>
 								<td><%=ebook.getTitle()%></td>
-								<td><%=ebook.getCover()%></td>
-								<td>MMK - 150</td>
-								<td><%=ebook.getUrl()%></td>
+								<%
+								for (Authors author : authors) {
+									if (author.getAuthor_id().equals(ebook.getAuthor_id())) {
+								%>
+								<td><%=author.getAuthor_name()%></td>
+								<%
+								}
+								}
+								for (Genre genre : genres) {
+								if (genre.getGenre_id().equals(ebook.getGenre_id())) {
+								%>
+								<td><%=genre.getGenre_name()%></td>
+								<%
+								}
+								}
+								for (Publishers publisher : publishers) {
+								if (publisher.getPublisher_id().equals(ebook.getPublisher_id())) {
+								%>
+								<td><%=publisher.getPublisher_name()%></td>
+								<%
+								}
+								}
+								%>
 								<td><button type="button" data-bs-toggle="modal"
 										data-bs-target="#editAuthor<%=ebook.getBook_id()%>"
 										class="btn btn-primary">
