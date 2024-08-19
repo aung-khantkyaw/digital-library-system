@@ -84,6 +84,7 @@ public class WebPageController extends HttpServlet {
 		BookInfoDAO bookInfoDAO = new BookInfoDAOImpl(connection);
 		BooksDAO booksDAO = new BooksDAOImpl(connection);
 		List<PhysicalBooks> physicalBooksList = null;
+		List<EBooks> ebookList = null;
 		List<Authors> authors = null;
 		List<Genre> genres = null;
 		List<Publishers> publishers = null;
@@ -91,6 +92,7 @@ public class WebPageController extends HttpServlet {
 
 		try {
 			physicalBooksList = booksDAO.GetAllPhysicalBooks();
+			ebookList = booksDAO.GetAllEBooks();
 			authors = bookInfoDAO.GetAllAuthors();
 			genres = bookInfoDAO.GetAllGenres();
 			publishers = bookInfoDAO.GetAllPublisher();
@@ -99,17 +101,6 @@ public class WebPageController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//	    List<Ebooks> ebookList = new ArrayList<>();
-		List<EBooks> ebookList = new ArrayList<>();
-
-		// Add sample physical books to the list
-
-		// Add sample ebooks to the list
-		ebookList.add(new EBooks("978-0321356680", "Effective Java", "cover4.jpg", 1, 1, 1, "01/05/2008",
-				"http://example.com/effective-java"));
-		ebookList.add(new EBooks("978-0596009205", "Head First Java", "cover5.jpg", 2, 2, 2, "01/11/2005",
-				"http://example.com/head-first-java"));
 
 		// Set the lists as session attributes
 		HttpSession session = request.getSession();

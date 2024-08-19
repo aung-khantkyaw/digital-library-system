@@ -29,7 +29,7 @@ public class BooksDAOImpl implements BooksDAO{
 	}
 
 	@Override
-	public PhysicalBookBorrow getPhysicalBorrowById(int borrow_id) {
+	public PhysicalBookBorrow getPhysicalBorrowById(String borrow_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -47,7 +47,7 @@ public class BooksDAOImpl implements BooksDAO{
 	}
 
 	@Override
-	public boolean deletePhysicalBorrow(int borrow_id) throws SQLException {
+	public boolean deletePhysicalBorrow(String borrow_id) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -59,7 +59,7 @@ public class BooksDAOImpl implements BooksDAO{
 	}
 
 	@Override
-	public EBookBorrow getEBookBorrowById(int borrow_id) {
+	public EBookBorrow getEBookBorrowById(String borrow_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -77,7 +77,7 @@ public class BooksDAOImpl implements BooksDAO{
 	}
 
 	@Override
-	public boolean deleteEBookBorrow(int borrow_id) throws SQLException {
+	public boolean deleteEBookBorrow(String borrow_id) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -183,33 +183,95 @@ public class BooksDAOImpl implements BooksDAO{
 	}
 
 	@Override
-	public List<EBooks> GetAllEBooks() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<EBooks> GetAllEBooks() throws SQLException {
+		List<EBooks> eBooks = new ArrayList<>();
+		String query = "SELECT * FROM ebook";
+		pstmt = connection.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			EBooks eBook = new EBooks();
+			eBook.setBook_id(rs.getString("book_id"));
+			eBook.setISBN(rs.getString("ISBN"));
+			eBook.setTitle(rs.getString("title"));
+			eBook.setCover(rs.getString("cover"));
+			eBook.setGenre_id(rs.getString("genre_id"));
+			eBook.setAuthor_id(rs.getString("author_id"));
+			eBook.setPublisher_id(rs.getString("publisher_id"));
+			eBook.setPublish_date(rs.getString("publish_date"));
+			eBook.setUrl(rs.getString("url"));
+			eBook.setRegistration_date(rs.getString("registration_date"));
+			eBooks.add(eBook);
+		}
+		return eBooks;
 	}
 
 	@Override
-	public EBooks GetEBookById(String ISBN) {
-		// TODO Auto-generated method stub
-		return null;
+	public EBooks GetEBookById(String book_id) throws SQLException {
+		EBooks eBook = null;
+		String query = "SELECT * FROM ebook WHERE book_id = ?";
+	    pstmt = connection.prepareStatement(query);
+	    pstmt.setString(1, book_id);
+	    ResultSet rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        return new EBooks(
+	        		rs.getString("book_id"),
+	        		rs.getString("ISBN"),
+	        		rs.getString("title"),
+	        		rs.getString("cover"),
+	        		rs.getString("genre_id"),
+	        		rs.getString("author_id"),
+	        		rs.getString("publisher_id"),
+	        		rs.getString("publish_date"),
+	        		rs.getString("url"),
+	        		rs.getString("registration_date")
+	        );
+	    }
+		return eBook;
 	}
 
 	@Override
-	public boolean AddEBooks(EBooks e_books) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean AddEBooks(EBooks e_books) throws SQLException {
+		String query = "INSERT INTO ebook(ISBN, title, cover, genre_id, author_id, publisher_id, publish_date, url, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, e_books.getISBN());
+		pstmt.setString(2, e_books.getTitle());
+		pstmt.setString(3, e_books.getCover());
+		pstmt.setString(4, e_books.getGenre_id());
+		pstmt.setString(5, e_books.getAuthor_id());
+		pstmt.setString(6, e_books.getPublisher_id());
+		pstmt.setString(7, e_books.getPublish_date());
+		pstmt.setString(8, e_books.getUrl());
+		pstmt.setString(9, e_books.getRegistration_date());
+		int rowsAffected = pstmt.executeUpdate();
+		return rowsAffected > 0;
 	}
 
 	@Override
 	public boolean EditEBooksDetail(EBooks e_book) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		String query = "UPDATE ebook SET ISBN = ?, title = ?, cover = ?, genre_id = ?, author_id = ?, publisher_id = ?, publish_date = ?, url = ?, registration_date = ? WHERE book_id = ?";
+		pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, e_book.getISBN());
+		pstmt.setString(2, e_book.getTitle());
+		pstmt.setString(3, e_book.getCover());
+		pstmt.setString(4, e_book.getGenre_id());
+		pstmt.setString(5, e_book.getAuthor_id());
+		pstmt.setString(6, e_book.getPublisher_id());
+		pstmt.setString(7, e_book.getPublish_date());
+		pstmt.setString(8, e_book.getUrl());
+		pstmt.setString(9, e_book.getRegistration_date());
+		pstmt.setString(10, e_book.getBook_id());
+		int rowsAffected = pstmt.executeUpdate();
+		return rowsAffected > 0;
 	}
 
 	@Override
-	public boolean DeleteEBooks(String ISBN) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean DeleteEBooks(String book_id) throws SQLException {
+		String query = "DELETE FROM ebook WHERE book_id = ?";
+		pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, book_id);
+		int rowsAffected = pstmt.executeUpdate();
+		return rowsAffected > 0;
 	}
 
 }

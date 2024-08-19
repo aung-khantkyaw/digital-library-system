@@ -171,7 +171,8 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 								<th>Cover</th>
 								<th>Title</th>
 								<th>Author</th>
-								<th>Price per day</th>
+								<th>Genre</th>
+								<th>Publisher</th>
 								<th>Quantity</th>
 								<th>Action</th>
 							</tr>
@@ -187,7 +188,15 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 								<td><img src="../book_info_images/<%=book.getCover()%>"
 									alt="Book Cover" class="rounded" width="50" /></td>
 								<td><%=book.getTitle()%></td>
-								<td><%=book.getCover()%></td>
+								<td>
+									<%
+										for(Authors author : authors){
+											if(author.getAuthor_id().equals(book.getAuthor_id())){
+												System.out.print(author.getAuthor_name());
+											}
+										}
+									%>
+								</td>
 								<td>MMK - 150</td>
 								<td><%=book.getQuantity()%></td>
 								<td><button type="button" data-bs-toggle="modal"
@@ -304,7 +313,8 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 															<span class="input-group-text" id="basic-addon1"><i
 																class="bi bi-calendar-check"></i></span> <input type="date"
 																class="form-control" placeholder="Publish date"
-																name="physicalbook_publsh_date" value="<%=book.getPublish_date()%>"
+																name="physicalbook_publsh_date"
+																value="<%=book.getPublish_date()%>"
 																aria-label="Publish date"
 																aria-describedby="basic-addon1" />
 														</div>
@@ -336,7 +346,8 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 															<span class="input-group-text" id="basic-addon1"><i
 																class="bi bi-bookmarks"></i></span> <input type="text"
 																class="form-control" placeholder="Quantity"
-																name="physicalbook_quantity" aria-label="Quantity" value="<%=book.getQuantity()%>"
+																name="physicalbook_quantity" aria-label="Quantity"
+																value="<%=book.getQuantity()%>"
 																aria-describedby="basic-addon1" />
 														</div>
 													</div>
@@ -427,7 +438,96 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 										<button type="button" class="btn-close"
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
-
+									<form action="../BookController" method="post"
+										enctype="multipart/form-data">
+										<input type="hidden" name="action" value="addEBook">
+										<div class="modal-body">
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1">cover</span>
+												<input class="form-control" type="file" id="formFile"
+													name="ebook_cover" />
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1"><i
+													class="bi bi-sort-numeric-down"></i></span> <input type="text"
+													class="form-control" placeholder="ISBN" aria-label="ISBN"
+													name="ebook_isbn" aria-describedby="basic-addon1" />
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1"><i
+													class="bi bi-hash"></i></span> <input type="text"
+													class="form-control" placeholder="Title" aria-label="Title"
+													name="ebook_title" aria-describedby="basic-addon1" />
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1">@</span> <select
+													class="form-select" aria-label="Default select example"
+													name="ebook_author" placeholder="Author"
+													aria-label="Author" size="3">
+													<%
+													if (authors != null && !authors.isEmpty()) {
+														for (Authors author : authors) {
+													%>
+													<option value="<%=author.getAuthor_id()%>"><%=author.getAuthor_name()%></option>
+													<%
+													}
+													}
+													%>
+												</select>
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1"><i
+													class="bi bi-receipt-cutoff"></i></span> <select
+													class="form-select" aria-label="Default select example"
+													name="ebook_genre" placeholder="Genre" aria-label="Genre"
+													size="3">
+													<%
+													if (genres != null && !genres.isEmpty()) {
+														for (Genre genre : genres) {
+													%>
+													<option value="<%=genre.getGenre_id()%>"><%=genre.getGenre_name()%></option>
+													<%
+													}
+													}
+													%>
+												</select>
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1"><i
+													class="bi bi-pin-angle"></i></span> <select class="form-select"
+													aria-label="Default select example" placeholder="Publisher"
+													name="ebook_publisher" aria-label="Publisher" size="3">
+													<%
+													if (publishers != null && !publishers.isEmpty()) {
+														for (Publishers publisher : publishers) {
+													%>
+													<option value="<%=publisher.getPublisher_id()%>"><%=publisher.getPublisher_name()%></option>
+													<%
+													}
+													}
+													%>
+												</select>
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1"><i
+													class="bi bi-calendar-check"></i></span> <input type="date"
+													class="form-control" placeholder="Publish date"
+													name="ebook_publsh_date" aria-label="Publish date"
+													aria-describedby="basic-addon1" />
+											</div>
+											<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon1"><i
+													class="bi bi-book"></i></span> <input class="form-control"
+													type="file" id="formFile" name="ebook_url" />
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -453,24 +553,194 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 								for (EBooks ebook : ebookList) {
 							%>
 							<tr>
-								<td><img src="../assets/img/news-1.jpg" alt="Book Cover"
-									class="rounded" width="50" /></td>
+								<td><img src="../book_info_images/<%=ebook.getCover()%>"
+									alt="Book Cover" class="rounded" width="50" /></td>
 								<td><%=ebook.getTitle()%></td>
 								<td><%=ebook.getCover()%></td>
 								<td>MMK - 150</td>
 								<td><%=ebook.getUrl()%></td>
-								<td><a href="#" class="btn btn-primary"><i
-										class="ri-edit-line"></i></a> <a href="#" class="btn btn-success"><i
-										class="ri-eye-line"></i></a> <a href="#" class="btn btn-danger"><i
-										class="ri-delete-back-2-line"></i></a></td>
+								<td><button type="button" data-bs-toggle="modal"
+										data-bs-target="#editAuthor<%=ebook.getBook_id()%>"
+										class="btn btn-primary">
+										<i class="ri-edit-line"></i>
+									</button>
+									<div class="modal fade" id="editAuthor<%=ebook.getBook_id()%>"
+										tabindex="-1">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">Edit Book</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<form action="../BookController" method="post"
+													enctype="multipart/form-data">
+													<input type="hidden" name="action" value="editEBook">
+													<input type="hidden" name="ebook_id"
+														value="<%=ebook.getBook_id()%>">
+													<div class="modal-body">
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1">cover</span>
+															<input class="form-control" type="file" id="formFile"
+																name="ebook_cover" value="<%=ebook.getCover()%>" />
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1"><i
+																class="bi bi-sort-numeric-down"></i></span> <input type="text"
+																class="form-control" placeholder="ISBN"
+																aria-label="ISBN" name="ebook_isbn"
+																value="<%=ebook.getISBN()%>"
+																"
+																aria-describedby="basic-addon1" />
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1"><i
+																class="bi bi-hash"></i></span> <input type="text"
+																class="form-control" placeholder="Title"
+																aria-label="Title" name="ebook_title"
+																value="<%=ebook.getTitle()%>"
+																aria-describedby="basic-addon1" />
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1">@</span>
+															<select class="form-select"
+																aria-label="Default select example" name="ebook_author"
+																placeholder="Author" aria-label="Author" size="3">
+																<%
+																if (authors != null && !authors.isEmpty()) {
+																	for (Authors author : authors) {
+																		if (author.getAuthor_id().equals(ebook.getAuthor_id())) {
+																%>
+																<option value="<%=author.getAuthor_id()%>" selected><%=author.getAuthor_name()%></option>
+																<%
+																} else {
+																%>
+																<option value="<%=author.getAuthor_id()%>"><%=author.getAuthor_name()%></option>
+																<%
+																}
+																}
+																}
+																%>
+															</select>
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1"><i
+																class="bi bi-receipt-cutoff"></i></span> <select
+																class="form-select" aria-label="Default select example"
+																name="ebook_genre" placeholder="Genre"
+																aria-label="Genre" size="3">
+																<%
+																if (genres != null && !genres.isEmpty()) {
+																	for (Genre genre : genres) {
+																		if (genre.getGenre_id().equals(ebook.getGenre_id())) {
+																%>
+																<option value="<%=genre.getGenre_id()%>" selected><%=genre.getGenre_name()%></option>
+																<%
+																} else {
+																}
+																%>
+																<option value="<%=genre.getGenre_id()%>"><%=genre.getGenre_name()%></option>
+																<%
+																}
+																}
+																%>
+															</select>
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1"><i
+																class="bi bi-pin-angle"></i></span> <select class="form-select"
+																aria-label="Default select example"
+																placeholder="Publisher" name="ebook_publisher"
+																aria-label="Publisher" size="3">
+																<%
+																if (publishers != null && !publishers.isEmpty()) {
+																	for (Publishers publisher : publishers) {
+																		if (publisher.getPublisher_id().equals(ebook.getPublisher_id())) {
+																%>
+																<option value="<%=publisher.getPublisher_id()%>"
+																	selected><%=publisher.getPublisher_name()%></option>
+																<%
+																} else {
+																}
+																%>
+																<option value="<%=publisher.getPublisher_id()%>"><%=publisher.getPublisher_name()%></option>
+																<%
+																}
+																}
+																%>
+															</select>
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1"><i
+																class="bi bi-calendar-check"></i></span> <input type="date"
+																class="form-control" placeholder="Publish date"
+																name="ebook_publsh_date" aria-label="Publish date"
+																value="<%=ebook.getPublish_date()%>"
+																aria-describedby="basic-addon1" />
+														</div>
+														<div class="input-group mb-3">
+															<span class="input-group-text" id="basic-addon1"><i
+																class="bi bi-book"></i></span> <input class="form-control"
+																type="file" id="formFile" name="ebook_url"
+																value="<%=ebook.getUrl()%>" />
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save
+															changes</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+									<button type="button" data-bs-toggle="modal"
+										data-bs-target="#authorDetail<%=ebook.getBook_id()%>"
+										class="btn btn-success">
+										<i class="ri-eye-line"></i>
+									</button>
+									<div class="modal fade"
+										id="authorDetail<%=ebook.getBook_id()%>" tabindex="-1">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title"><%=ebook.getBook_id()%></h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<div class="card mb-3">
+														<div class="row g-0">
+															<div class="col-md-4">
+																<img src="../book_info_images/<%=ebook.getCover()%>"
+																	class="img-fluid rounded-start" alt="...">
+															</div>
+															<div class="col-md-8">
+																<div class="card-body">
+																	<h5 class="card-title"><%=ebook.getTitle()%></h5>
+																	<p class="card-text"><%=ebook.getAuthor_id()%></p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Close</button>
+													<button type="submit" class="btn btn-primary">Save
+														changes</button>
+												</div>
+											</div>
+										</div>
+									</div> <a
+									href="../BookController?action=deleteEBook&book_id=<%=ebook.getBook_id()%>"
+									class="btn btn-danger"><i class="ri-delete-back-2-line"></i></a></td>
 							</tr>
 
 							<%
 							}
-							} else {
-							%>
-							<li>No books available.</li>
-							<%
 							}
 							%>
 						</tbody>

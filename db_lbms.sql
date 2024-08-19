@@ -25,7 +25,7 @@ CREATE TABLE author (
     author_id INT PRIMARY KEY AUTO_INCREMENT,
     author_name VARCHAR(255) NOT NULL,
     author_profile VARCHAR(255) NOT NULL,
-    author_Biography VARCHAR(255) NOT NULL
+    author_Biography TEXT NOT NULL
 );
 
 -- create table for book genre information.
@@ -67,14 +67,16 @@ CREATE TABLE physical_book (
 );
 
 CREATE TABLE ebook (
-    ISBN CHAR(13) PRIMARY KEY,
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    ISBN CHAR(13) NOT NULL,
     title VARCHAR(255) NOT NULL,
     cover VARCHAR(255) NOT NULL,
     genre_id VARCHAR(255) NOT NULL REFERENCES genre(genre_id) ON DELETE CASCADE,
     author_id VARCHAR(255) NOT NULL REFERENCES author(author_id) ON DELETE CASCADE,
     publisher_id VARCHAR(255) NOT NULL REFERENCES publisher(publisher_id) ON DELETE CASCADE,
     publish_date DATE NOT NULL,
-    url VARCHAR(255) NOT NULL
+    url VARCHAR(255) NOT NULL,
+    registration_date VARCHAR(255) NOT NULL
 );
 
 -- create table for physical book borrowing information.

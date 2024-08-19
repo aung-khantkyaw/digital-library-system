@@ -107,10 +107,12 @@ if (isLoggedIn) {
 								<td><%=publisher.getPublisher_name()%></td>
 								<td></td>
 								<td><button type="button" data-bs-toggle="modal"
-										data-bs-target="#editAuthor<%=publisher.getPublisher_id()%>" class="btn btn-primary">
+										data-bs-target="#editAuthor<%=publisher.getPublisher_id()%>"
+										class="btn btn-primary">
 										<i class="ri-edit-line"></i>
 									</button>
-									<div class="modal fade" id="editAuthor<%=publisher.getPublisher_id()%>" tabindex="-1">
+									<div class="modal fade"
+										id="editAuthor<%=publisher.getPublisher_id()%>" tabindex="-1">
 										<div class="modal-dialog modal-dialog-centered">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -126,14 +128,15 @@ if (isLoggedIn) {
 													<div class="modal-body">
 														<div class="input-group mb-3">
 															<input class="form-control" type="file" id="formFile"
-																name="publisher_profile"  />
+																name="publisher_profile" />
 														</div>
 														<div class="input-group mb-3">
 															<span class="input-group-text" id="basic-addon1">@</span>
 															<input type="text" class="form-control"
 																name="publisher_name" placeholder="Publisher Name"
 																aria-label="Publisher Name"
-																aria-describedby="basic-addon1" value="<%=publisher.getPublisher_name()%>">
+																aria-describedby="basic-addon1"
+																value="<%=publisher.getPublisher_name()%>">
 														</div>
 														<div class="input-group mb-3">
 															<span class="input-group-text" id="basic-addon1">
@@ -141,7 +144,8 @@ if (isLoggedIn) {
 															</span> <input type="text" class="form-control"
 																name="publisher_address" placeholder="Publisher Address"
 																aria-label="Publisher Address"
-																aria-describedby="basic-addon1" value="<%=publisher.getPublisher_address()%>">
+																aria-describedby="basic-addon1"
+																value="<%=publisher.getPublisher_address()%>">
 														</div>
 														<div class="input-group mb-3">
 															<span class="input-group-text" id="basic-addon1">
@@ -149,7 +153,8 @@ if (isLoggedIn) {
 															</span> <input type="text" class="form-control"
 																name="publisher_email" placeholder="Publisher Email"
 																aria-label="Publisher Email"
-																aria-describedby="basic-addon1" value="<%=publisher.getPublisher_email()%>">
+																aria-describedby="basic-addon1"
+																value="<%=publisher.getPublisher_email()%>">
 														</div>
 														<div class="input-group mb-3">
 															<span class="input-group-text" id="basic-addon1">
@@ -157,7 +162,8 @@ if (isLoggedIn) {
 															</span> <input type="text" class="form-control"
 																name="publisher_phone" placeholder="Phone number"
 																aria-label="Phone number"
-																aria-describedby="basic-addon1" value="<%=publisher.getPublisher_phone_number()%>">
+																aria-describedby="basic-addon1"
+																value="<%=publisher.getPublisher_phone_number()%>">
 														</div>
 													</div>
 													<div class="modal-footer">
@@ -171,11 +177,14 @@ if (isLoggedIn) {
 									</div>
 
 									<button type="button" data-bs-toggle="modal"
-										data-bs-target="#publisherDetailfor<%=publisher.getPublisher_id()%>" class="btn btn-success">
+										data-bs-target="#publisherDetailfor<%=publisher.getPublisher_id()%>"
+										class="btn btn-success">
 										<i class="ri-eye-line"></i>
 									</button>
-									<div class="modal fade" id="publisherDetailfor<%=publisher.getPublisher_id()%>" tabindex="-1">
-										<div class="modal-dialog modal-dialog-centered">
+									<div class="modal fade"
+										id="publisherDetailfor<%=publisher.getPublisher_id()%>"
+										tabindex="-1">
+										<div class="modal-dialog modal-dialog-centered modal-lg">
 											<div class="modal-content">
 												<div class="modal-header">
 													<h5 class="modal-title"><%=publisher.getPublisher_name()%></h5>
@@ -193,7 +202,16 @@ if (isLoggedIn) {
 															<div class="col-md-8">
 																<div class="card-body">
 																	<h5 class="card-title"><%=publisher.getPublisher_name()%></h5>
-																	<p class="card-text"><%=publisher.getPublisher_email()%></p>
+																	
+																	<ul class="list-group">
+																		<li class="list-group-item"><i
+																			class="bi bi-map me-1 text-success"></i> <%=publisher.getPublisher_address()%></li>
+																		<li class="list-group-item"><i
+																			class="bi bi-mailbox me-1 text-primary"></i> <%=publisher.getPublisher_email()%></li>
+																		<li class="list-group-item"><i
+																			class="bi bi-telephone me-1 text-danger"></i> <%=publisher.getPublisher_phone_number()%></li>
+																		
+																	</ul>
 																</div>
 															</div>
 														</div>

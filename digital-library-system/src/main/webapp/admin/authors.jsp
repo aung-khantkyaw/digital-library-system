@@ -88,7 +88,7 @@ if (isLoggedIn) {
 									src="../book_info_images/<%=author.getAuthor_profile()%>"
 									alt="Book Cover" class="rounded" width="50" /></td>
 								<td><%=author.getAuthor_name()%></td>
-								<td><%=author.getAuthor_Biography()%></td>
+								<td></td>
 								<td>
 
 									<button type="button" data-bs-toggle="modal"
@@ -142,7 +142,7 @@ if (isLoggedIn) {
 										<i class="ri-eye-line"></i>
 									</button>
 									<div class="modal fade" id="authorDetail<%=author.getAuthor_id()%>" tabindex="-1">
-										<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-dialog modal-dialog-centered modal-lg">
 											<div class="modal-content">
 												<div class="modal-header">
 													<h5 class="modal-title"><%=author.getAuthor_name()%></h5>
@@ -155,7 +155,7 @@ if (isLoggedIn) {
 															<div class="col-md-4">
 																<img
 																	src="../book_info_images/<%=author.getAuthor_profile()%>"
-																	class="img-fluid rounded-start" alt="...">
+																	class="d-block w-100 rounded-start" alt="...">
 															</div>
 															<div class="col-md-8">
 																<div class="card-body">
@@ -169,8 +169,6 @@ if (isLoggedIn) {
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary">Save
-														changes</button>
 												</div>
 											</div>
 										</div>
