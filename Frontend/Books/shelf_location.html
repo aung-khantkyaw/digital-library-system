@@ -258,520 +258,63 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Author List</h5>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h5 class="card-title">Shelf List</h5>
+                  <form action="">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Shelf Location"
+                        aria-label="Shelf Location"
+                        aria-describedby="button-addon2"
+                      />
+                      <button
+                        class="btn btn-primary"
+                        type="button"
+                        id="button-addon2"
+                      >
+                        <i class="ri-add-line"></i> Add Shelf
+                      </button>
+                    </div>
+                  </form>
+                </div>
 
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
                   <thead>
                     <tr>
-                      <th>Cover</th>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Price per day</th>
-                      <th>Quantity</th>
+                      <th>Shelf Location</th>
+                      <th>Book Quantity</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
+                      <td>Romance</td>
                       <td>100</td>
                       <td>
                         <a href="#" class="btn btn-primary"
                           ><i class="ri-edit-line"></i
                         ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
                         <a href="#" class="btn btn-danger"
                           ><i class="ri-delete-back-2-line"></i
                         ></a>
                       </td>
                     </tr>
                     <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
+                      <td>Funny</td>
                       <td>200</td>
                       <td>
                         <a href="#" class="btn btn-primary"
                           ><i class="ri-edit-line"></i
                         ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
                         <a href="#" class="btn btn-danger"
                           ><i class="ri-delete-back-2-line"></i
                         ></a>
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-1.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>အစဉ်သဖြင့်</td>
-                      <td>ငြိမ်းကျော်</td>
-                      <td>MMK - 150</td>
-                      <td>100</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../assets/img/news-2.jpg"
-                          alt="Book Cover"
-                          class="rounded"
-                          width="50"
-                        />
-                      </td>
-                      <td>သူငယ်ချင်းလို့ဆက်၍ခေါ်မည်ခိုင်</td>
-                      <td>တက္ကသိုလ် ဘုန်းနိုင်</td>
-                      <td>MMK - 250</td>
-                      <td>200</td>
-                      <td>
-                        <a href="#" class="btn btn-primary"
-                          ><i class="ri-edit-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-success"
-                          ><i class="ri-eye-line"></i
-                        ></a>
-                        <a href="#" class="btn btn-danger"
-                          ><i class="ri-delete-back-2-line"></i
-                        ></a>
-                      </td>
+                    
                     </tr>
                   </tbody>
                 </table>

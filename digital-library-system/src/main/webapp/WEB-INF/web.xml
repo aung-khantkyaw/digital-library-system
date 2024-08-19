@@ -13,7 +13,7 @@
     <description></description>
     <display-name>UserController</display-name>
     <servlet-name>UserController</servlet-name>
-    <servlet-class>controller.UserController</servlet-class>
+    <servlet-class>controllers.UserController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserController</servlet-name>
@@ -21,12 +21,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>BookController</display-name>
-    <servlet-name>BookController</servlet-name>
-    <servlet-class>controller.BookController</servlet-class>
+    <display-name>WebPageController</display-name>
+    <servlet-name>WebPageController</servlet-name>
+    <servlet-class>controllers.WebPageController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>BookController</servlet-name>
-    <url-pattern>/BookController</url-pattern>
+    <servlet-name>WebPageController</servlet-name>
+    <url-pattern>/WebPageController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BookInfoController</display-name>
+    <servlet-name>BookInfoController</servlet-name>
+    <servlet-class>controllers.BookInfoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookInfoController</servlet-name>
+    <url-pattern>/BookInfoController</url-pattern>
   </servlet-mapping>
 </web-app>

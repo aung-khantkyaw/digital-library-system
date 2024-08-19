@@ -10,12 +10,12 @@ import util.DatabaseConnection;
 public class BookBorrowDAOImpl implements BookBorrowDAO {
 
 	private DatabaseConnection conn;
-	
+
 	public BookBorrowDAOImpl(DatabaseConnection conn) {
 		super();
 		this.conn = conn;
 	}
-	
+
 	@Override
 	public List<PhysicalBookBorrow> getAllPhysicalBorrows() {
 		// TODO Auto-generated method stub

@@ -1,19 +1,28 @@
 package model;
 
 public class ShelfLocation {
-	private int shelf_id;
+	private String shelf_id;
 	private String shelf_location;
 
-	public ShelfLocation(int shelf_id, String shelf_location) {
+	public ShelfLocation(String shelf_location) {
+		super();
+		this.shelf_location = shelf_location;
+	}
+
+	public ShelfLocation(String shelf_id, String shelf_location) {
 		super();
 		this.shelf_id = shelf_id;
 		this.shelf_location = shelf_location;
 	}
 
-	public int getShelf_id() {
+	public ShelfLocation() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getShelf_id() {
 		return shelf_id;
 	}
-	public void setShelf_id(int shelf_id) {
+	public void setShelf_id(String shelf_id) {
 		this.shelf_id = shelf_id;
 	}
 	public String getShelf_location() {

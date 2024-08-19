@@ -9,7 +9,7 @@ public class EBooks {
 	private int publisher_id;
 	private String publish_date;
 	private String url;
-	
+
 	public EBooks(String iSBN, String title, String cover, int genre_id, int author_id, int publisher_id,
 			String publish_date, String url) {
 		super();
@@ -22,7 +22,7 @@ public class EBooks {
 		this.publish_date = publish_date;
 		this.url = url;
 	}
-	
+
 	public String getISBN() {
 		return ISBN;
 	}

@@ -16,7 +16,8 @@ CREATE TABLE user (
     profile VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL CHECK(role IN ('Admin', 'Librarian', 'Member')),
-    status VARCHAR(255) NOT NULL CHECK(status IN ('Active', 'Banned', 'Pending'))
+    status VARCHAR(255) NOT NULL CHECK(status IN ('Active', 'Banned', 'Pending')),
+    registration_date VARCHAR(255) NOT NULL
 );
 
 -- create table for book author information.
@@ -60,7 +61,8 @@ CREATE TABLE physical_book (
     publish_date DATE NOT NULL,
     shelf_id INT NOT NULL REFERENCES shelf_location(shelf_id) ON DELETE CASCADE,
     quantity INT NOT NULL,
-    status VARCHAR(255) NOT NULL CHECK(status IN ('Available', 'Unavailable')) 
+    status VARCHAR(255) NOT NULL CHECK(status IN ('Available', 'Unavailable')) ,
+    registration_date VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE ebook (

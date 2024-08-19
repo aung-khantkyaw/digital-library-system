@@ -10,7 +10,7 @@ public class PhysicalBookBorrow {
 	private String status;
 	private String pay_amount;
 	private int fine;
-	
+
 	public PhysicalBookBorrow(int borrow_id, int user_id, String iSBN, String borrow_date, String due_date,
 			String return_date, String status, String pay_amount, int fine) {
 		super();
@@ -24,7 +24,7 @@ public class PhysicalBookBorrow {
 		this.pay_amount = pay_amount;
 		this.fine = fine;
 	}
-	
+
 	public int getBorrow_id() {
 		return borrow_id;
 	}

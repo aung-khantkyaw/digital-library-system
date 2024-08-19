@@ -4,16 +4,22 @@ public class PhysicalBooks {
 	private String ISBN;
 	private String title;
 	private String cover;
-	private int genre_id;
-	private int author_id;
-	private int publisher_id;
+	private String genre_id;
+	private String author_id;
+	private String publisher_id;
 	private String publish_date;
-	private int shelf_id;
-	private int quantity;
+	private String shelf_id;
+	private String quantity;
 	private String status;
-	
-	public PhysicalBooks(String iSBN, String title, String cover, int genre_id, int author_id, int publisher_id,
-			String publish_date, int shelf_id, int quantity, String status) {
+
+
+
+	public PhysicalBooks() {
+		super();
+	}
+
+	public PhysicalBooks(String iSBN, String title, String cover, String genre_id, String author_id, String publisher_id,
+			String publish_date, String shelf_id, String quantity, String status) {
 		super();
 		ISBN = iSBN;
 		this.title = title;
@@ -26,7 +32,7 @@ public class PhysicalBooks {
 		this.quantity = quantity;
 		this.status = status;
 	}
-	
+
 	public String getISBN() {
 		return ISBN;
 	}
@@ -51,27 +57,27 @@ public class PhysicalBooks {
 		this.cover = cover;
 	}
 
-	public int getGenre_id() {
+	public String getGenre_id() {
 		return genre_id;
 	}
 
-	public void setGenre_id(int genre_id) {
+	public void setGenre_id(String genre_id) {
 		this.genre_id = genre_id;
 	}
 
-	public int getAuthor_id() {
+	public String getAuthor_id() {
 		return author_id;
 	}
 
-	public void setAuthor_id(int author_id) {
+	public void setAuthor_id(String author_id) {
 		this.author_id = author_id;
 	}
 
-	public int getPublisher_id() {
+	public String getPublisher_id() {
 		return publisher_id;
 	}
 
-	public void setPublisher_id(int publisher_id) {
+	public void setPublisher_id(String publisher_id) {
 		this.publisher_id = publisher_id;
 	}
 
@@ -83,19 +89,19 @@ public class PhysicalBooks {
 		this.publish_date = publish_date;
 	}
 
-	public int getShelf_id() {
+	public String getShelf_id() {
 		return shelf_id;
 	}
 
-	public void setShelf_id(int shelf_id) {
+	public void setShelf_id(String shelf_id) {
 		this.shelf_id = shelf_id;
 	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 
