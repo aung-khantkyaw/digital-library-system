@@ -15,6 +15,8 @@ import model.ShelfLocation;
 import util.DatabaseConnection;
 import dao.BookInfoDAO;
 import dao.BookInfoDAOImpl;
+import dao.BooksDAO;
+import dao.BooksDAOImpl;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -80,12 +82,15 @@ public class WebPageController extends HttpServlet {
 		}
 
 		BookInfoDAO bookInfoDAO = new BookInfoDAOImpl(connection);
+		BooksDAO booksDAO = new BooksDAOImpl(connection);
+		List<PhysicalBooks> physicalBooksList = null;
 		List<Authors> authors = null;
 		List<Genre> genres = null;
 		List<Publishers> publishers = null;
 		List<ShelfLocation> shelfLocations = null;
 
 		try {
+			physicalBooksList = booksDAO.GetAllPhysicalBooks();
 			authors = bookInfoDAO.GetAllAuthors();
 			genres = bookInfoDAO.GetAllGenres();
 			publishers = bookInfoDAO.GetAllPublisher();
@@ -94,8 +99,7 @@ public class WebPageController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// Create lists for physical books and ebooks
-		List<PhysicalBooks> physicalBooksList = new ArrayList<>();
+		
 //	    List<Ebooks> ebookList = new ArrayList<>();
 		List<EBooks> ebookList = new ArrayList<>();
 

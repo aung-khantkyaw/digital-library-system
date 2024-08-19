@@ -35,7 +35,7 @@ public interface BookInfoDAO {
 	//Genre
 	public List<Genre> GetAllGenres() throws SQLException;
 
-	public Genre GetGenreById(String genre_id);
+	public Genre GetGenreById(String genre_id) throws SQLException;
 
 	public boolean AddGenre(Genre genre) throws SQLException;
 

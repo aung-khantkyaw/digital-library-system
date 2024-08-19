@@ -39,4 +39,14 @@
     <servlet-name>BookInfoController</servlet-name>
     <url-pattern>/BookInfoController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BookController</display-name>
+    <servlet-name>BookController</servlet-name>
+    <servlet-class>controllers.BookController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookController</servlet-name>
+    <url-pattern>/BookController</url-pattern>
+  </servlet-mapping>
 </web-app>

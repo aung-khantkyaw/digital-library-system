@@ -52,7 +52,8 @@ CREATE TABLE shelf_location (
 
 -- create table book for physical book and ebook information. 
 CREATE TABLE physical_book (
-    ISBN CHAR(13) PRIMARY KEY,
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    ISBN CHAR(13) NOT NULL,
     title VARCHAR(255) NOT NULL,
     cover VARCHAR(255) NOT NULL,
     genre_id VARCHAR(255) NOT NULL REFERENCES genre(genre_id) ON DELETE CASCADE,

@@ -32,24 +32,24 @@ public interface BooksDAO {
     public boolean deleteEBookBorrow(int borrow_id) throws SQLException;
 
 	//Physical Books
-	public List<PhysicalBooks> GetAllPhysicalBooks();
+	public List<PhysicalBooks> GetAllPhysicalBooks() throws SQLException;
 
-	public PhysicalBooks GetPhysicalBookById(int ISBN);
+	public PhysicalBooks GetPhysicalBookById(String book_id) throws SQLException;
 
-	public boolean AddPhysicalBooks(PhysicalBooks physical_books);
+	public boolean AddPhysicalBooks(PhysicalBooks physical_books) throws SQLException;
 
 	public boolean EditPhysicalBooksDetail(PhysicalBooks physical_book) throws SQLException;
 
-	public boolean DeletePhysicalBooks(int ISBN);
+	public boolean DeletePhysicalBooks(String book_id) throws SQLException;
 
 	//E Books
 	public List<EBooks> GetAllEBooks();
 
-	public EBooks GetEBookById(int ISBN);
+	public EBooks GetEBookById(String ISBN);
 
 	public boolean AddEBooks(EBooks e_books);
 
 	public boolean EditEBooksDetail(EBooks e_book) throws SQLException;
 
-	public boolean DeleteEBooks(int ISBN);
+	public boolean DeleteEBooks(String ISBN);
 }
