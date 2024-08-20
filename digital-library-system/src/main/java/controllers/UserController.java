@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import model.ShelfLocation;
 import model.Users;
 import util.DatabaseConnection;
 
@@ -61,24 +62,59 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 */
-		/*
-		 * String fullURL = request.getRequestURL().toString(); String lastPath =
-		 * Helper.getLastPartOfURL(fullURL); String action =
-		 * request.getParameter(lastPath);
-		 */
-
 		String action = request.getParameter("action");
 
 		switch (action) {
 		case "logout":
 			logoutUser(request, response);
 			break;
+		case "activateUser":
+			activateUser(request, response);
+			break;
+		case "banUser":
+			banUser(request, response);
+			break;
 		}
 	}
 
+	private void banUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		String user_id = request.getParameter("user_id");
+
+		Users user = new Users();
+		try {
+			userDAO.banUserById(user_id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.sendRedirect("WebPageController?action=all_users");
+	}
+
+	private void activateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String user_id = request.getParameter("user_id");
+
+		Users user = new Users();
+		try {
+			userDAO.activateUserById(user_id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.sendRedirect("WebPageController?action=pending_users");
+	}
+
+	private void logoutUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+
+		// Redirect to login page or home page
+		response.sendRedirect("login.jsp");
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -101,17 +137,6 @@ public class UserController extends HttpServlet {
 			loginUser(request, response);
 			break;
 		}
-	}
-
-	private void logoutUser(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			session.invalidate();
-		}
-
-		// Redirect to login page or home page
-		response.sendRedirect("login.jsp");
 	}
 
 	private void addUser(HttpServletRequest request, HttpServletResponse response)
@@ -142,10 +167,8 @@ public class UserController extends HttpServlet {
 
 			if (result) { // Dynamic path retrieval
 
-				// String uploadPath = request.getServletContext().getRealPath("") +
-				// File.separator + "user_profile_images";
+				String uploadPath = request.getServletContext().getRealPath("") + File.separator + "user_profile_images";
 
-				String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\user_profile_images";
 				File uploadDir = new File(uploadPath);
 				if (!uploadDir.exists()) {
 					uploadDir.mkdir();

@@ -226,7 +226,7 @@ public class BookInfoController extends HttpServlet {
 			if (result) {
 				if (!publisher_profile.equals(existingPublisher.getPublisher_profile())) {
 					// Save the new file if a new file is uploaded
-					String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
+					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
 						uploadDir.mkdir();
@@ -265,7 +265,7 @@ public class BookInfoController extends HttpServlet {
 				// String uploadPath = request.getServletContext().getRealPath("") +
 				// File.separator + "user_profile_images";
 
-				String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
+				String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 				File uploadDir = new File(uploadPath);
 				if (!uploadDir.exists()) {
 					uploadDir.mkdir();
@@ -315,7 +315,7 @@ public class BookInfoController extends HttpServlet {
 			if (result) {
 				if (!author_profile.equals(existingAuthor.getAuthor_profile())) {
 					// Save the new file if a new file is uploaded
-					String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
+					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
 						uploadDir.mkdir();
@@ -350,7 +350,7 @@ public class BookInfoController extends HttpServlet {
 				// String uploadPath = request.getServletContext().getRealPath("") +
 				// File.separator + "user_profile_images";
 
-				String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
+				String uploadPath = request.getServletContext().getRealPath("") + File.separator +  "book_info_images";
 				File uploadDir = new File(uploadPath);
 				if (!uploadDir.exists()) {
 					uploadDir.mkdir();

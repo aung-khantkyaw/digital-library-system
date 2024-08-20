@@ -69,12 +69,7 @@ String fullURL = request.getRequestURL().toString();
 					<li><a class="dropdown-item d-flex align-items-center"
 						href="../UserController?action=logout"> <i class="bi bi-box-arrow-right"></i>
 							<span>Logout</span>
-					</a> <!-- <form action="../UserController" method="get"
-							class="dropdown-item d-flex align-items-center">
-							<i class="bi bi-box-arrow-right"></i> <input type="hidden"
-								name="action" value="logout">
-								<input type="submit" value="Logout">
-						</form> --></li>
+					</a></li>
 				</ul> <!-- End Profile Dropdown Items --></li>
 			<!-- End Profile Nav -->
 		</ul>
@@ -127,14 +122,14 @@ if (user.getRole().equals("Admin")) {
 
 		<li class="nav-heading">Users</li>
 
-		<li class="nav-item"><a class="nav-link collapsed"
-			href="Users/add-user.html"> <i class="ri-user-received-2-line"></i>
-				<span>New Users</span>
+		<li class="nav-item"><a class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("pending_users") ? "" : "collapsed"%>"
+			href="../WebPageController?action=pending_users"> <i class="ri-user-received-2-line"></i>
+				<span>Pending Users</span>
 		</a></li>
 
-		<li class="nav-item"><a class="nav-link collapsed"
-			href="Users/all-users.html"> <i class="ri-team-line"></i> <span>All
-					Users</span>
+		<li class="nav-item"><a class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("all_users") ? "" : "collapsed"%>"
+			href="../WebPageController?action=all_users"> <i class="ri-user-follow-line"></i>
+				<span>All Users</span>
 		</a></li>
 
 		<!-- End User Nav -->
@@ -166,26 +161,22 @@ if (user.getRole().equals("Admin")) {
 		<li class="nav-heading">Book Details</li>
 
 		<li class="nav-item"><a
-			class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("books") ? "" : "collapsed"%>"
-			href="books.jsp"> <i class="ri-git-repository-line"></i> <span>Books</span>
+			class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("physical_books") ? "" : "collapsed"%>"
+			href="../WebPageController?action=books&user=true&type=physical"> <i class="ri-git-repository-line"></i> <span>Physical Books</span>
+		</a></li>
+		
+		<li class="nav-item"><a
+			class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("ebooks") ? "" : "collapsed"%>"
+			href="../WebPageController?action=books&user=true&type=ebook"> <i class="ri-git-repository-line"></i> <span>E Books</span>
 		</a></li>
 
 		<li class="nav-item"><a
 			class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("authors") ? "" : "collapsed"%>"
-			href="authors.jsp"> <i class="ri-account-pin-box-line"></i> <span>Author</span>
+			href="../WebPageController?action=authors&user=true"> <i class="ri-account-pin-box-line"></i> <span>Author</span>
 		</a></li>
 
-		<li class="nav-item"><a class="nav-link collapsed"
-			href="Books/genre.html"> <i class="ri-list-check-2"></i> <span>Genre</span>
-		</a></li>
-
-		<li class="nav-item"><a class="nav-link collapsed"
-			href="Books/publisher.html"> <i class="ri-pen-nib-line"></i> <span>Publisher</span>
-		</a></li>
-
-		<li class="nav-item"><a class="nav-link collapsed"
-			href="Books/shelf_location.html"> <i class="ri-map-pin-line"></i>
-				<span>Shelf Location</span>
+		<li class="nav-item "><a class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("publishers") ? "" : "collapsed"%>"
+			href="../WebPageController?action=publishers&user=true"> <i class="ri-pen-nib-line"></i> <span>Publisher</span>
 		</a></li>
 
 		<!-- End Book Nav -->

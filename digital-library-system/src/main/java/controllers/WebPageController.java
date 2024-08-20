@@ -12,11 +12,14 @@ import model.Genre;
 import model.PhysicalBooks;
 import model.Publishers;
 import model.ShelfLocation;
+import model.Users;
 import util.DatabaseConnection;
 import dao.BookInfoDAO;
 import dao.BookInfoDAOImpl;
 import dao.BooksDAO;
 import dao.BooksDAOImpl;
+import dao.UsersDAO;
+import dao.UsersDAOImpl;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -29,23 +32,25 @@ import java.util.List;
  */
 public class WebPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public WebPageController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public WebPageController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String action = request.getParameter("action");
-		switch(action) {
+		switch (action) {
 		case "books":
 			books(request, response);
 			break;
@@ -61,28 +66,21 @@ public class WebPageController extends HttpServlet {
 		case "shelf_location":
 			shelf_location(request, response);
 			break;
+		case "pending_users":
+			pending_users(request, response);
+			break;
+		case "all_users":
+			all_users(request, response);
+			break;
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-	
-	private void books(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Connection connection = null;
-		try {
-			connection = DatabaseConnection.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void booksData(HttpServletRequest request) throws SQLException {
+		Connection connection = DatabaseConnection.getConnection();
 
 		BookInfoDAO bookInfoDAO = new BookInfoDAOImpl(connection);
 		BooksDAO booksDAO = new BooksDAOImpl(connection);
+
 		List<PhysicalBooks> physicalBooksList = null;
 		List<EBooks> ebookList = null;
 		List<Authors> authors = null;
@@ -90,19 +88,13 @@ public class WebPageController extends HttpServlet {
 		List<Publishers> publishers = null;
 		List<ShelfLocation> shelfLocations = null;
 
-		try {
-			physicalBooksList = booksDAO.GetAllPhysicalBooks();
-			ebookList = booksDAO.GetAllEBooks();
-			authors = bookInfoDAO.GetAllAuthors();
-			genres = bookInfoDAO.GetAllGenres();
-			publishers = bookInfoDAO.GetAllPublisher();
-			shelfLocations = bookInfoDAO.GetAllShelfLocation();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		physicalBooksList = booksDAO.GetAllPhysicalBooks();
+		ebookList = booksDAO.GetAllEBooks();
+		authors = bookInfoDAO.GetAllAuthors();
+		genres = bookInfoDAO.GetAllGenres();
+		publishers = bookInfoDAO.GetAllPublisher();
+		shelfLocations = bookInfoDAO.GetAllShelfLocation();
 
-		// Set the lists as session attributes
 		HttpSession session = request.getSession();
 		session.setAttribute("physicalBooksList", physicalBooksList);
 		session.setAttribute("ebookList", ebookList);
@@ -110,28 +102,89 @@ public class WebPageController extends HttpServlet {
 		session.setAttribute("genres", genres);
 		session.setAttribute("publishers", publishers);
 		session.setAttribute("shelfLocations", shelfLocations);
+	}
 
-		// Redirect to the JSP page
-		response.sendRedirect(request.getContextPath() + "/admin/books.jsp");
+	public void authorsData(HttpServletRequest request) throws SQLException {
+		Connection connection = DatabaseConnection.getConnection();
+
+		BookInfoDAO authorsDAO = new BookInfoDAOImpl(connection);
+
+		List<Authors> authors = authorsDAO.GetAllAuthors();
+
+		HttpSession session = request.getSession();
+		session.setAttribute("authors", authors);
+	}
+	
+	public void publishersData(HttpServletRequest request) throws SQLException {
+		Connection connection = DatabaseConnection.getConnection();
+
+		BookInfoDAO publisherDAO = new BookInfoDAOImpl(connection);
+
+		List<Publishers> publishers = publisherDAO.GetAllPublisher();
+
+		HttpSession session = request.getSession();
+		session.setAttribute("publishers", publishers);
+	}
+
+	private void all_users(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		try {
+			Connection connection = DatabaseConnection.getConnection();
+			UsersDAO usersDAO = new UsersDAOImpl(connection);
+			List<Users> all_users = usersDAO.GetAllUsers();
+			HttpSession session = request.getSession();
+			session.setAttribute("all_users", all_users);
+			response.sendRedirect(request.getContextPath() + "/admin/all_users.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void pending_users(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		try {
+			Connection connection = DatabaseConnection.getConnection();
+			UsersDAO usersDAO = new UsersDAOImpl(connection);
+			List<Users> pending_users = usersDAO.GetAllPendingUsers();
+			HttpSession session = request.getSession();
+			session.setAttribute("pending_users", pending_users);
+			response.sendRedirect(request.getContextPath() + "/admin/pending_users.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void books(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			booksData(request);
+			String user = request.getParameter("user");
+			String type = request.getParameter("type");
+			if (user.equals("true") && type.equals("physical")) {
+				response.sendRedirect(request.getContextPath() + "/user/physical_books.jsp");
+			} else if (user.equals("true") && type.equals("ebook")) {
+				response.sendRedirect(request.getContextPath() + "/user/ebooks.jsp");
+			} else {
+				response.sendRedirect(request.getContextPath() + "/admin/books.jsp");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void authors(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			Connection connection = DatabaseConnection.getConnection();
+			authorsData(request);
 
-			BookInfoDAO authorsDAO = new BookInfoDAOImpl(connection);
+			String user = request.getParameter("user");
+			if (user.equals("true")) {
+				response.sendRedirect(request.getContextPath() + "/user/authors.jsp");
 
-			List<Authors> authors = authorsDAO.GetAllAuthors();
-
-//	        for (Authors author : authors) {
-//	            System.out.println("Shelf Location: " + author.getAuthor_id() + author.getAuthor_name());
-//	        }
-
-			HttpSession session = request.getSession();
-			session.setAttribute("authors", authors);
-
-			response.sendRedirect(request.getContextPath() + "/admin/authors.jsp");
+			} else {
+				response.sendRedirect(request.getContextPath() + "/admin/authors.jsp");
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -148,10 +201,6 @@ public class WebPageController extends HttpServlet {
 
 			List<Genre> genres = genreDAO.GetAllGenres();
 
-//	        for (Genre genre : genres) {
-//	            System.out.println("Shelf Location: " + genre.getGenre_id() + genre.getGenre_name());
-//	        }
-
 			HttpSession session = request.getSession();
 			session.setAttribute("genres", genres);
 
@@ -167,20 +216,15 @@ public class WebPageController extends HttpServlet {
 	private void publishers(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			Connection connection = DatabaseConnection.getConnection();
+			publishersData(request);
+			String user = request.getParameter("user");
+			if (user.equals("true")) {
+				response.sendRedirect(request.getContextPath() + "/user/publishers.jsp");
 
-			BookInfoDAO publisherDAO = new BookInfoDAOImpl(connection);
-
-			List<Publishers> publishers = publisherDAO.GetAllPublisher();
-
-//		        for (Publishers publisher : publishers) {
-//		            System.out.println("Shelf Location: " + publisher.getPublisher_name() + publisher.getPublisher_id());
-//		        }
-
-			HttpSession session = request.getSession();
-			session.setAttribute("publishers", publishers);
-
-			response.sendRedirect(request.getContextPath() + "/admin/publishers.jsp");
+			} else {
+				response.sendRedirect(request.getContextPath() + "/admin/publishers.jsp");
+			}
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,5 +257,13 @@ public class WebPageController extends HttpServlet {
 		}
 	}
 
-
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 }

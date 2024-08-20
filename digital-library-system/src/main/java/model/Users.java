@@ -1,7 +1,7 @@
 package model;
 
 public class Users {
-	private int user_id;
+	private String user_id;
 	private String username;
 	private String password;
 	private String password_key;
@@ -17,6 +17,23 @@ public class Users {
 		super();
 	}
 
+	
+	
+	public Users(String user_id, String username, String email, String phone_number, String profile, String address,
+			String role, String status) {
+		super();
+		this.user_id = user_id;
+		this.username = username;
+		this.email = email;
+		this.phone_number = phone_number;
+		this.profile = profile;
+		this.address = address;
+		this.role = role;
+		this.status = status;
+	}
+
+
+
 	public Users(String username, String password, String password_key, String email, String phone_number, String profile, String address,
 			String role, String status, String registration_date) {
 		super();
@@ -31,12 +48,28 @@ public class Users {
 		this.status = status;
 		this.registration_date = registration_date;
 	}
+	
+	public Users(String user_id, String username, String password, String password_key, String email,
+			String phone_number, String profile, String address, String role, String status, String registration_date) {
+		super();
+		this.user_id = user_id;
+		this.username = username;
+		this.password = password;
+		this.password_key = password_key;
+		this.email = email;
+		this.phone_number = phone_number;
+		this.profile = profile;
+		this.address = address;
+		this.role = role;
+		this.status = status;
+		this.registration_date = registration_date;
+	}
 
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 

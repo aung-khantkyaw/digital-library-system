@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="util.Helper"%>
-<%@ page import="model.Users" %>
+<%@ page import="model.Users"%>
 <%
 boolean isLoggedIn = Helper.isLoggedIn(session);
 Users user = (Users) session.getAttribute("user");
@@ -45,10 +45,9 @@ Users user = (Users) session.getAttribute("user");
 									class="relative flex max-w-xs items-center rounded-xl bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
 									id="user-menu-button" aria-expanded="false"
 									aria-haspopup="true">
-									<span class="px-6 text-white font-bold"> <%= user.getUsername() %> </span>
-									<img class="h-14 w-14 rounded-xl border-2 border-indigo-500"
-										src="user_profile_images/<%= user.getProfile() %>"
-										alt="">
+									<span class="px-6 text-white font-bold"> <%=user.getUsername()%>
+									</span> <img class="h-14 w-14 rounded-xl border-2 border-indigo-500"
+										src="user_profile_images/<%=user.getProfile()%>" alt="">
 								</div>
 							</div>
 						</div>
@@ -57,8 +56,8 @@ Users user = (Users) session.getAttribute("user");
 					} else {
 					%>
 					<a href="login.jsp"
-						class="text-sm font-bold leading-6 text-gray-900">Log in
-						<span aria-hidden="true">&rarr;</span>
+						class="text-sm font-bold leading-6 text-gray-900">Log in <span
+						aria-hidden="true">&rarr;</span>
 					</a>
 					<%
 					}
@@ -94,9 +93,29 @@ Users user = (Users) session.getAttribute("user");
 						enhance your research and reading experience.
 					</p>
 					<div class="mt-10 flex items-center justify-center gap-x-6">
-					
-						<a href=<%= isLoggedIn ? "admin/dashboard.jsp" : "registration.jsp" %> class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"><%= isLoggedIn ? "Go to Dashboard" : "Create a new account" %></a>
-					
+
+
+						<%
+						if (isLoggedIn) {
+							if(user.getRole().equals("Admin")){
+								%>
+								<a href="admin/dashboard.jsp"
+									class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go to dashboard</a>
+								<%
+							} else {
+								%>
+								<a href="user/dashboard.jsp"
+									class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go to dashboard</a>
+								<%
+							}
+						} else {
+						%>
+						<a href="registration.jsp"
+							class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
+							a new account</a>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>

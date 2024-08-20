@@ -13,7 +13,7 @@ import model.EBooks;
 import model.PhysicalBookBorrow;
 import model.PhysicalBooks;
 
-public class BooksDAOImpl implements BooksDAO{
+public class BooksDAOImpl implements BooksDAO {
 
 	private Connection connection;
 	public PreparedStatement pstmt;
@@ -82,11 +82,20 @@ public class BooksDAOImpl implements BooksDAO{
 		return false;
 	}
 
+	/* Physical Books */
+
+	public String getphysicalbooks_query = "SELECT * FROM physical_book";
+	public String getphysicalbooksbyId_query = "SELECT * FROM physical_book WHERE book_id = ?";
+	public String getphysicalbooksbyauthor_query = "SELECT * FROM physical_book WHERE author_id = ?";
+	public String getphysicalbooksbypublisher_query = "SELECT * FROM physical_book WHERE publisher_id = ?";
+	public String addphysicalbooks_query = "INSERT INTO physical_book(ISBN, title, cover, genre_id, author_id, publisher_id, publish_date, shelf_id, quantity, status, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public String updatephysicalbooks_query = "UPDATE physical_book SET ISBN = ?, title = ?, cover = ?, genre_id = ?, author_id = ?, publisher_id = ?, publish_date = ?, shelf_id = ?, quantity = ?, status = ?, registration_date = ? WHERE book_id = ?";
+	public String deletephysicalbooks_query = "DELETE FROM physical_book WHERE book_id = ?";
+
 	@Override
 	public List<PhysicalBooks> GetAllPhysicalBooks() throws SQLException {
 		List<PhysicalBooks> physicalBooks = new ArrayList<>();
-		String query = "SELECT * FROM physical_book";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getphysicalbooks_query);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			PhysicalBooks physicalBook = new PhysicalBooks();
@@ -110,34 +119,54 @@ public class BooksDAOImpl implements BooksDAO{
 	@Override
 	public PhysicalBooks GetPhysicalBookById(String book_id) throws SQLException {
 		PhysicalBooks physicalBook = null;
-		String query = "SELECT * FROM physical_book WHERE book_id = ?";
-	    pstmt = connection.prepareStatement(query);
-	    pstmt.setString(1, book_id);
-	    ResultSet rs = pstmt.executeQuery();
+		pstmt = connection.prepareStatement(getphysicalbooksbyId_query);
+		pstmt.setString(1, book_id);
+		ResultSet rs = pstmt.executeQuery();
 
-	    if (rs.next()) {
-	        return new PhysicalBooks(
-	        		rs.getString("book_id"),
-	        		rs.getString("ISBN"),
-	        		rs.getString("title"),
-	        		rs.getString("cover"),
-	        		rs.getString("genre_id"),
-	        		rs.getString("author_id"),
-	        		rs.getString("publisher_id"),
-	        		rs.getString("publish_date"),
-	        		rs.getString("shelf_id"),
-	        		rs.getString("quantity"),
-	        		rs.getString("status"),
-	        		rs.getString("registration_date")
-	        );
-	    }
+		if (rs.next()) {
+			return new PhysicalBooks(rs.getString("book_id"), rs.getString("ISBN"), rs.getString("title"),
+					rs.getString("cover"), rs.getString("genre_id"), rs.getString("author_id"),
+					rs.getString("publisher_id"), rs.getString("publish_date"), rs.getString("shelf_id"),
+					rs.getString("quantity"), rs.getString("status"), rs.getString("registration_date"));
+		}
+		return physicalBook;
+	}
+
+	@Override
+	public PhysicalBooks GetPhysicalBookByAuthor(String author_id) throws SQLException {
+		PhysicalBooks physicalBook = null;
+		pstmt = connection.prepareStatement(getphysicalbooksbyauthor_query);
+		pstmt.setString(1, author_id);
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			return new PhysicalBooks(rs.getString("book_id"), rs.getString("ISBN"), rs.getString("title"),
+					rs.getString("cover"), rs.getString("genre_id"), rs.getString("author_id"),
+					rs.getString("publisher_id"), rs.getString("publish_date"), rs.getString("shelf_id"),
+					rs.getString("quantity"), rs.getString("status"), rs.getString("registration_date"));
+		}
+		return physicalBook;
+	}
+
+	@Override
+	public PhysicalBooks GetPhysicalBookByPublisher(String publisher_id) throws SQLException {
+		PhysicalBooks physicalBook = null;
+		pstmt = connection.prepareStatement(getphysicalbooksbypublisher_query);
+		pstmt.setString(1, publisher_id);
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			return new PhysicalBooks(rs.getString("book_id"), rs.getString("ISBN"), rs.getString("title"),
+					rs.getString("cover"), rs.getString("genre_id"), rs.getString("author_id"),
+					rs.getString("publisher_id"), rs.getString("publish_date"), rs.getString("shelf_id"),
+					rs.getString("quantity"), rs.getString("status"), rs.getString("registration_date"));
+		}
 		return physicalBook;
 	}
 
 	@Override
 	public boolean AddPhysicalBooks(PhysicalBooks physical_books) throws SQLException {
-		String query = "INSERT INTO physical_book(ISBN, title, cover, genre_id, author_id, publisher_id, publish_date, shelf_id, quantity, status, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(addphysicalbooks_query);
 		pstmt.setString(1, physical_books.getISBN());
 		pstmt.setString(2, physical_books.getTitle());
 		pstmt.setString(3, physical_books.getCover());
@@ -155,8 +184,7 @@ public class BooksDAOImpl implements BooksDAO{
 
 	@Override
 	public boolean EditPhysicalBooksDetail(PhysicalBooks physical_book) throws SQLException {
-		String query = "UPDATE physical_book SET ISBN = ?, title = ?, cover = ?, genre_id = ?, author_id = ?, publisher_id = ?, publish_date = ?, shelf_id = ?, quantity = ?, status = ?, registration_date = ? WHERE book_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(updatephysicalbooks_query);
 		pstmt.setString(1, physical_book.getISBN());
 		pstmt.setString(2, physical_book.getTitle());
 		pstmt.setString(3, physical_book.getCover());
@@ -175,18 +203,26 @@ public class BooksDAOImpl implements BooksDAO{
 
 	@Override
 	public boolean DeletePhysicalBooks(String book_id) throws SQLException {
-		String query = "DELETE FROM physical_book WHERE book_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(deletephysicalbooks_query);
 		pstmt.setString(1, book_id);
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
 	}
 
+	/* E Books */
+
+	public String getebooks_query = "SELECT * FROM ebook";
+	public String getebooksbyId_query = "SELECT * FROM ebook WHERE book_id = ?";
+	public String getebooksbyauthor_query = "SELECT * FROM ebook WHERE author_id = ?";
+	public String getebooksbypublisher_query = "SELECT * FROM ebook WHERE publisher_id = ?";
+	public String addebooks_query = "INSERT INTO ebook(ISBN, title, cover, genre_id, author_id, publisher_id, publish_date, url, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public String updateebooks_query = "UPDATE ebook SET ISBN = ?, title = ?, cover = ?, genre_id = ?, author_id = ?, publisher_id = ?, publish_date = ?, url = ?, registration_date = ? WHERE book_id = ?";
+	public String deleteebooks_query = "DELETE FROM ebook WHERE book_id = ?";
+
 	@Override
 	public List<EBooks> GetAllEBooks() throws SQLException {
 		List<EBooks> eBooks = new ArrayList<>();
-		String query = "SELECT * FROM ebook";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getebooks_query);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			EBooks eBook = new EBooks();
@@ -208,32 +244,54 @@ public class BooksDAOImpl implements BooksDAO{
 	@Override
 	public EBooks GetEBookById(String book_id) throws SQLException {
 		EBooks eBook = null;
-		String query = "SELECT * FROM ebook WHERE book_id = ?";
-	    pstmt = connection.prepareStatement(query);
-	    pstmt.setString(1, book_id);
-	    ResultSet rs = pstmt.executeQuery();
+		pstmt = connection.prepareStatement(getebooksbyId_query);
+		pstmt.setString(1, book_id);
+		ResultSet rs = pstmt.executeQuery();
 
-	    if (rs.next()) {
-	        return new EBooks(
-	        		rs.getString("book_id"),
-	        		rs.getString("ISBN"),
-	        		rs.getString("title"),
-	        		rs.getString("cover"),
-	        		rs.getString("genre_id"),
-	        		rs.getString("author_id"),
-	        		rs.getString("publisher_id"),
-	        		rs.getString("publish_date"),
-	        		rs.getString("url"),
-	        		rs.getString("registration_date")
-	        );
-	    }
+		if (rs.next()) {
+			return new EBooks(rs.getString("book_id"), rs.getString("ISBN"), rs.getString("title"),
+					rs.getString("cover"), rs.getString("genre_id"), rs.getString("author_id"),
+					rs.getString("publisher_id"), rs.getString("publish_date"), rs.getString("url"),
+					rs.getString("registration_date"));
+		}
+		return eBook;
+	}
+
+	@Override
+	public EBooks GetEBookByAuthor(String author_id) throws SQLException {
+		EBooks eBook = null;
+		pstmt = connection.prepareStatement(getebooksbyauthor_query);
+		pstmt.setString(1, author_id);
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			return new EBooks(rs.getString("book_id"), rs.getString("ISBN"), rs.getString("title"),
+					rs.getString("cover"), rs.getString("genre_id"), rs.getString("author_id"),
+					rs.getString("publisher_id"), rs.getString("publish_date"), rs.getString("url"),
+					rs.getString("registration_date"));
+		}
+		return eBook;
+	}
+
+	@Override
+	public EBooks GetEBookByPublisher(String publisher_id) throws SQLException {
+		EBooks eBook = null;
+		pstmt = connection.prepareStatement(getebooksbypublisher_query);
+		pstmt.setString(1, publisher_id);
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			return new EBooks(rs.getString("book_id"), rs.getString("ISBN"), rs.getString("title"),
+					rs.getString("cover"), rs.getString("genre_id"), rs.getString("author_id"),
+					rs.getString("publisher_id"), rs.getString("publish_date"), rs.getString("url"),
+					rs.getString("registration_date"));
+		}
 		return eBook;
 	}
 
 	@Override
 	public boolean AddEBooks(EBooks e_books) throws SQLException {
-		String query = "INSERT INTO ebook(ISBN, title, cover, genre_id, author_id, publisher_id, publish_date, url, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(addebooks_query);
 		pstmt.setString(1, e_books.getISBN());
 		pstmt.setString(2, e_books.getTitle());
 		pstmt.setString(3, e_books.getCover());
@@ -249,8 +307,7 @@ public class BooksDAOImpl implements BooksDAO{
 
 	@Override
 	public boolean EditEBooksDetail(EBooks e_book) throws SQLException {
-		String query = "UPDATE ebook SET ISBN = ?, title = ?, cover = ?, genre_id = ?, author_id = ?, publisher_id = ?, publish_date = ?, url = ?, registration_date = ? WHERE book_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(updateebooks_query);
 		pstmt.setString(1, e_book.getISBN());
 		pstmt.setString(2, e_book.getTitle());
 		pstmt.setString(3, e_book.getCover());
@@ -267,8 +324,7 @@ public class BooksDAOImpl implements BooksDAO{
 
 	@Override
 	public boolean DeleteEBooks(String book_id) throws SQLException {
-		String query = "DELETE FROM ebook WHERE book_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(deleteebooks_query);
 		pstmt.setString(1, book_id);
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;

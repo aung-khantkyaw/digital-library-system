@@ -37,7 +37,6 @@ if (isLoggedIn) {
 							<tr>
 								<th>Shelf Id</th>
 								<th>Shelf Location</th>
-								<th>Book Quantity</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -54,7 +53,6 @@ if (isLoggedIn) {
 							<tr>
 								<td><%=location.getShelf_id()%></td>
 								<td><%=location.getShelf_location()%></td>
-								<td></td>
 								<td><a
 									href="../BookInfoController?action=deleteShelfLocation&shelf_location=<%=location.getShelf_location()%>"
 									class="btn btn-danger"><i class="ri-delete-back-2-line"></i></a></td>

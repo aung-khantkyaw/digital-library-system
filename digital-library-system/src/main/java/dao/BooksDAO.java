@@ -35,6 +35,10 @@ public interface BooksDAO {
 	public List<PhysicalBooks> GetAllPhysicalBooks() throws SQLException;
 
 	public PhysicalBooks GetPhysicalBookById(String book_id) throws SQLException;
+	
+	public PhysicalBooks GetPhysicalBookByAuthor(String author_id) throws SQLException;
+	
+	public PhysicalBooks GetPhysicalBookByPublisher(String publisher_id) throws SQLException;
 
 	public boolean AddPhysicalBooks(PhysicalBooks physical_books) throws SQLException;
 
@@ -46,6 +50,10 @@ public interface BooksDAO {
 	public List<EBooks> GetAllEBooks() throws SQLException;
 
 	public EBooks GetEBookById(String book_id) throws SQLException;
+	
+	public EBooks GetEBookByAuthor(String author_id) throws SQLException;
+	
+	public EBooks GetEBookByPublisher(String publisher_id) throws SQLException;
 
 	public boolean AddEBooks(EBooks e_books) throws SQLException;
 

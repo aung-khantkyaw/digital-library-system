@@ -25,7 +25,9 @@ if (isLoggedIn) {
 									<i class="bi bi-book-half"></i>
 								</div>
 								<div class="ps-3">
-									<h6><%=Helper.countRows("physical_book")%> books</h6>
+									<h6><%=Helper.countRows("physical_book")%>
+										books
+									</h6>
 								</div>
 							</div>
 						</div>
@@ -45,7 +47,9 @@ if (isLoggedIn) {
 									<i class="bi bi-cash"></i>
 								</div>
 								<div class="ps-3">
-									<h6><%=Helper.countRows("physical_book")%> books</h6>
+									<h6><%=Helper.countRows("physical_book")%>
+										books
+									</h6>
 								</div>
 							</div>
 						</div>
@@ -65,7 +69,9 @@ if (isLoggedIn) {
 									<i class="bi bi-people"></i>
 								</div>
 								<div class="ps-3">
-									<h6><%=Helper.countRows("user")%> members</h6>
+									<h6><%=Helper.countRows("user")%>
+										members
+									</h6>
 								</div>
 							</div>
 						</div>
@@ -284,9 +290,6 @@ if (isLoggedIn) {
 		<!-- End Right side columns -->
 	</div>
 </section>
-</main>
-<!-- End #main -->
-
 <%@ include file="../layout/footer.jsp"%>
 
 <%

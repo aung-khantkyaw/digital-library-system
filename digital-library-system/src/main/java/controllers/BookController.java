@@ -163,8 +163,8 @@ public class BookController extends HttpServlet {
 	        boolean result = bookDAO.EditEBooksDetail(ebooks);
 	        if (result) {
 	            // If a new cover or URL file was uploaded, save the files
-	            String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
-	            String urlUploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_files";
+	            String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
+	            String urlUploadPath = request.getServletContext().getRealPath("") + File.separator +  "\book_info_files";
 
 	            // Ensure the directories exist
 	            File uploadDir = new File(uploadPath);
@@ -235,8 +235,8 @@ public class BookController extends HttpServlet {
 
 	        if (result) {
 	            // Define the upload paths for both the cover and the URL (PDF)
-	            String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
-	            String urlUploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_files";
+	            String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
+	            String urlUploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_files";
 
 	            // Ensure both directories exist
 	            File uploadDir = new File(uploadPath);
@@ -309,7 +309,7 @@ public class BookController extends HttpServlet {
 			if (result) { // Dynamic path retrieval
 				if (!physicalbook_cover.equals(existingBook.getCover())) {
 					// Save the new file if a new file is uploaded
-					String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
+					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
 						uploadDir.mkdir();
@@ -358,7 +358,7 @@ public class BookController extends HttpServlet {
 				// String uploadPath = request.getServletContext().getRealPath("") +
 				// File.separator + "user_profile_images";
 
-				String uploadPath = "D:\\Project\\DigitalLibrarySystem\\digital-library-system\\src\\main\\webapp\\book_info_images";
+				String uploadPath = request.getServletContext().getRealPath("") + File.separator +  "book_info_images";
 				File uploadDir = new File(uploadPath);
 				if (!uploadDir.exists()) {
 					uploadDir.mkdir();
