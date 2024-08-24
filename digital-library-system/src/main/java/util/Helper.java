@@ -137,4 +137,39 @@ public class Helper {
 	    return counts;
 	}
 
+	public static boolean canBorrowEbook(String user_id) throws SQLException {
+	    // Number of days to check for previous physical book borrowings
+	    int days = 30;
+	    int minimumPhysicalBorrows = 2;
+
+	    // Create SQL query to count physical books borrowed in the last 30 days by the user
+	    String query = "SELECT COUNT(*) FROM physical_borrow " +
+	                   "WHERE user_id = ? AND borrow_date >= (NOW() - INTERVAL ? DAY)";
+
+	    // Initialize database connection and prepared statement
+	    try (Connection conn = DatabaseConnection.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+	        // Set parameters for the query
+	        stmt.setString(1, user_id);
+	        stmt.setInt(2, days);
+
+	        // Execute query and get result
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            if (rs.next()) {
+	                int borrowCount = rs.getInt(1); // Get the count of physical borrows
+
+	                // If the user borrowed at least 2 physical books, allow borrowing of the ebook
+	                return borrowCount >= minimumPhysicalBorrows;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        // Handle SQL exception
+	        e.printStackTrace();
+	    }
+
+	    // Default to not allowing borrowing if the check fails
+	    return false;
+	}
+	
 }

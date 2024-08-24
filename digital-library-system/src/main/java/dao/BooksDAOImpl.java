@@ -21,67 +21,6 @@ public class BooksDAOImpl implements BooksDAO {
 	public BooksDAOImpl(Connection connection) {
 		this.connection = connection;
 	}
-
-	@Override
-	public List<PhysicalBookBorrow> getAllPhysicalBorrows() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public PhysicalBookBorrow getPhysicalBorrowById(String borrow_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean addPhysicalBorrow(PhysicalBookBorrow physical_borrow) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updatePhysicalBorrow(PhysicalBookBorrow physical_borrow) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deletePhysicalBorrow(String borrow_id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<EBookBorrow> getAllEBookBorrows() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public EBookBorrow getEBookBorrowById(String borrow_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean addEBookBorrow(EBookBorrow ebook_borrow) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updateEBookBorrow(EBookBorrow ebook_borrow) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteEBookBorrow(String borrow_id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	/* Physical Books */
 
 	public String getphysicalbooks_query = "SELECT * FROM physical_book";

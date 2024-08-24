@@ -18,7 +18,8 @@ if (isLoggedIn) {
 <%@ page import="model.ShelfLocation"%>
 <%@ page import="dao.BookInfoDAOImpl"%>
 <%
-List<PhysicalBooks> physicalBooks = (List<PhysicalBooks>) session.getAttribute("physicalBooksList");
+List<PhysicalBooks> booksList = (List<PhysicalBooks>) session.getAttribute("physicalBooksList");
+List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 List<Authors> authors = (List<Authors>) session.getAttribute("authors");
 List<Publishers> publishers = (List<Publishers>) session.getAttribute("publishers");
 List<Genre> genres = (List<Genre>) session.getAttribute("genres");
@@ -180,7 +181,6 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 						<tbody>
 							<%
 							// Retrieve booksList from the session
-							List<PhysicalBooks> booksList = (List<PhysicalBooks>) session.getAttribute("physicalBooksList");
 							if (booksList != null && !booksList.isEmpty()) {
 								for (PhysicalBooks book : booksList) {
 							%>
@@ -590,7 +590,7 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 						<tbody>
 							<%
 							// Retrieve booksList from the session
-							List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
+							
 							if (ebookList != null && !ebookList.isEmpty()) {
 								for (EBooks ebook : ebookList) {
 							%>

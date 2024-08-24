@@ -83,10 +83,10 @@ CREATE TABLE ebook (
 CREATE TABLE physical_borrow (
     borrow_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL REFERENCES user(user_id) ON DELETE CASCADE,
-    ISBN CHAR(13) NOT NULL REFERENCES physical_book(ISBN) ON DELETE CASCADE,
+    book_id INT NOT NULL REFERENCES physical_book(book_id) ON DELETE CASCADE,
     borrow_date DATE NOT NULL,
     due_date DATE NOT NULL,
-    return_date DATE NOT NULL,
+    return_date DATE,
     status VARCHAR(255) NOT NULL CHECK(status IN ('Borrowed', 'Returned')),
     pay_amount VARCHAR(255),
     fine DECIMAL(10, 2) Default 0
@@ -96,7 +96,7 @@ CREATE TABLE physical_borrow (
 CREATE TABLE ebook_borrow (
     borrow_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL REFERENCES user(user_id) ON DELETE CASCADE,
-    ISBN CHAR(13) NOT NULL REFERENCES ebook(ISBN) ON DELETE CASCADE,
+    book_id INT NOT NULL REFERENCES ebook(book_id) ON DELETE CASCADE,
     borrow_date DATE NOT NULL,
     due_date DATE NOT NULL,
     status VARCHAR(255) NOT NULL CHECK(status IN ('Borrowed', 'Returned')) 
@@ -111,7 +111,7 @@ BEGIN
     DECLARE available_quantity INT;
 
     -- Get the current quantity of the book
-    SELECT quantity INTO available_quantity FROM physical_book WHERE ISBN = NEW.ISBN;
+    SELECT quantity INTO available_quantity FROM physical_book WHERE book_id = NEW.book_id;
 
     -- Check if the book is available
     IF available_quantity = 0 THEN
@@ -119,11 +119,11 @@ BEGIN
         SET MESSAGE_TEXT = 'Book is not available';
     ELSE
         -- Update the quantity of the book
-        UPDATE physical_book SET quantity = quantity - 1 WHERE ISBN = NEW.ISBN;
+        UPDATE physical_book SET quantity = quantity - 1 WHERE book_id = NEW.book_id;
 
         -- Update the status if quantity reaches 0
         IF available_quantity - 1 = 0 THEN
-            UPDATE physical_book SET status = 'Unavailable' WHERE ISBN = NEW.ISBN;
+            UPDATE physical_book SET status = 'Unavailable' WHERE book_id = NEW.book_id;
         END IF;
     END IF;
 END;
@@ -144,19 +144,19 @@ BEGIN
         -- Update the quantity of the book
         UPDATE physical_book 
         SET quantity = quantity + 1 
-        WHERE ISBN = NEW.ISBN;
+        WHERE book_id = NEW.book_id;
 
         -- Get the current quantity of the book
         SELECT quantity INTO current_quantity 
         FROM physical_book 
-        WHERE ISBN = NEW.ISBN
+        WHERE book_id = NEW.book_id
         LIMIT 1;  -- Ensure only one row is selected
 
         -- Update the status if quantity is greater than 0 and status is 'Unavailable'
         IF current_quantity > 0 THEN
             UPDATE physical_book 
             SET status = 'Available' 
-            WHERE ISBN = NEW.ISBN
+            WHERE book_id = NEW.book_id
             LIMIT 1;  -- Ensure only one row is affected
         END IF;
     END IF;
@@ -177,7 +177,7 @@ BEGIN
     -- Get pay amount from physical_book table
     SELECT pay_amount INTO daily_rate
     FROM physical_borrow
-    WHERE ISBN = NEW.ISBN
+    WHERE book_id = NEW.book_id
     LIMIT 1;  -- Ensure only one row is returned
 
     -- Set the new pay_amount

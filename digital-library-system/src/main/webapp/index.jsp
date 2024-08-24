@@ -20,111 +20,117 @@ Users user = (Users) session.getAttribute("user");
 <link href="assets/img/online-library.png" rel="apple-touch-icon" />
 
 <script src="https://cdn.tailwindcss.com"></script>
+<style>
+.glass-morphic {
+	background: rgba(255, 255, 255, 0);
+	backdrop-filter: blur(20px);
+	border-radius: 10px;
+	/* box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff; */
+	padding: 20px;
+	margin: 20px;
+}
+</style>
 </head>
 
-<body>
-	<div class="bg-white">
-		<header class="absolute inset-x-0 top-0 z-50">
-			<nav class="flex items-center justify-between p-6 lg:px-8"
-				aria-label="Global">
-				<div class="flex flex-1">
-					<a href="#" class="-m-1.5 p-1.5"> <img
-						class="h-12 w-auto bg-dark-light rounded-md shadow-xl hover:shadow-md p-1 border-2 border-indigo-500"
-						src="assets/img/online-library.png" alt="" />
-					</a>
-				</div>
-				<div class="flex flex-1 justify-end">
-					<%
-					if (isLoggedIn) {
-					%>
-					<div class="ml-4 flex items-center md:ml-6">
-						<!-- Profile dropdown -->
-						<div class="relative ml-3">
-							<div>
-								<div
-									class="relative flex max-w-xs items-center rounded-xl bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-									id="user-menu-button" aria-expanded="false"
-									aria-haspopup="true">
-									<span class="px-6 text-white font-bold"> <%=user.getUsername()%>
-									</span> <img class="h-14 w-14 rounded-xl border-2 border-indigo-500"
-										src="user_profile_images/<%=user.getProfile()%>" alt="">
-								</div>
+<body
+	style="background-image: url('assets/img/background.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
+	<header class="absolute inset-x-0 top-0 z-50 bg-white">
+		<nav class="flex items-center justify-between p-6 lg:px-8"
+			aria-label="Global">
+			<div class="flex flex-1 items-center">
+				<a href="#" class="-m-1.5 p-1.5 "> <img
+					class="h-10 w-auto bg-dark-light rounded-md shadow-xl hover:shadow-md p-1 border-2 border-indigo-500"
+					src="assets/img/online-library.png" alt="" />
+				</a> <span
+					class="hidden lg:block text-xl ml-5 font-bold text-indigo-500">Digital
+					Library System</span>
+			</div>
+
+			<div class="flex flex-1 justify-end">
+				<%
+				if (isLoggedIn) {
+				%>
+				<div class="ml-4 flex items-center md:ml-6">
+					<!-- Profile dropdown -->
+					<div class="relative ml-3">
+						<div>
+							<div
+								class="relative flex max-w-xs items-center rounded-xl bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+								id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+								<span class="px-6 text-white font-bold"> <%=user.getUsername()%>
+								</span> <img class="h-10 w-10 rounded-xl border-2 border-indigo-500"
+									src="user_profile_images/<%=user.getProfile()%>" alt="">
 							</div>
 						</div>
 					</div>
+				</div>
+				<%
+				} else {
+				%>
+				<a href="login.jsp"
+					class="text-lg font-bold leading-6 text-gray-900">Log in <span
+					aria-hidden="true">&rarr;</span>
+				</a>
+				<%
+				}
+				%>
+			</div>
+		</nav>
+	</header>
+
+	<div class="relative isolate px-6 pt-14 lg:px-8">
+
+		<div class="mx-auto max-w-4xl py-16 sm:py-48 lg:py-64">
+
+			<div class="text-center glass-morphic">
+				<div class="hidden sm:mb-8 sm:flex sm:justify-center">
+					<div
+						class="relative rounded-full px-3 py-1 text-md font-bold leading-6 text-indigo-100 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
+						a revolution in accessing knowledge at your fingertips</div>
+				</div>
+				<p class="mt-6 text-lg leading-8 text-gray-100 font-bold">
+					Discover a world of knowledge at your fingertips with our Digital
+					Library System.<br /> Seamlessly access a vast collection of
+					books, articles resources anytime, anywhere.<br /> Experience the
+					ultimate in convenience and efficiency with advanced search
+					features and a user-friendly interface designed to enhance your
+					research and reading experience.
+				</p>
+				<div class="mt-10 flex items-center justify-center gap-x-6">
+
+
+					<%
+					if (isLoggedIn) {
+						if (user.getRole().equals("Admin")) {
+					%>
+					<a href="admin/dashboard.jsp"
+						class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go
+						to dashboard</a>
+					<%
+					} else if (user.getStatus().equals("Active")) {
+					%>
+					<a href="WebPageController?action=profile"
+						class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go
+						to dashboard</a>
 					<%
 					} else {
 					%>
-					<a href="login.jsp"
-						class="text-sm font-bold leading-6 text-gray-900">Log in <span
-						aria-hidden="true">&rarr;</span>
-					</a>
+					<span
+						class="rounded-md bg-red-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Your
+						account is currently inactive. Please try again in 30 minutes. If
+						the issue persists, contact support for further assistance.</span>
+
+					<%
+					}
+					} else {
+					%>
+					<a href="registration.jsp"
+						class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
+						a new account</a>
 					<%
 					}
 					%>
 				</div>
-			</nav>
-		</header>
-
-		<div class="relative isolate px-6 pt-14 lg:px-8">
-			<div
-				class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-				aria-hidden="true">
-				<div
-					class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-					style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%);"></div>
-			</div>
-			<div class="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
-				<div class="hidden sm:mb-8 sm:flex sm:justify-center">
-					<div
-						class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-						a revolution in accessing knowledge at your fingertips</div>
-				</div>
-				<div class="text-center">
-					<h1
-						class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-						Digital Library System</h1>
-					<p class="mt-6 text-lg leading-8 text-gray-600">
-						Discover a world of knowledge at your fingertips with our Digital
-						Library System.<br /> Seamlessly access a vast collection of
-						books, articles, and multimedia resources anytime, anywhere.<br />
-						Experience the ultimate in convenience and efficiency with
-						advanced search features and a user-friendly interface designed to
-						enhance your research and reading experience.
-					</p>
-					<div class="mt-10 flex items-center justify-center gap-x-6">
-
-
-						<%
-						if (isLoggedIn) {
-							if(user.getRole().equals("Admin")){
-								%>
-								<a href="admin/dashboard.jsp"
-									class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go to dashboard</a>
-								<%
-							} else {
-								%>
-								<a href="user/dashboard.jsp"
-									class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go to dashboard</a>
-								<%
-							}
-						} else {
-						%>
-						<a href="registration.jsp"
-							class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
-							a new account</a>
-						<%
-						}
-						%>
-					</div>
-				</div>
-			</div>
-			<div
-				class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-				aria-hidden="true">
-				<div
-					class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-					style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%);"></div>
 			</div>
 		</div>
 	</div>

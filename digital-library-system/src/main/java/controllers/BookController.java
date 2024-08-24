@@ -116,12 +116,10 @@ public class BookController extends HttpServlet {
 	}
 
 	private void editEBook(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-	    // Get the current date and format it
 	    Date date = Calendar.getInstance().getTime();
 	    DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 	    String registration_date = formatter.format(date);
 
-	    // Retrieve form data
 	    String ebook_id = request.getParameter("ebook_id");
 	    String ebook_isbn = request.getParameter("ebook_isbn");
 	    String ebook_title = request.getParameter("ebook_title");
@@ -134,39 +132,33 @@ public class BookController extends HttpServlet {
 	    Part urlPart = request.getPart("ebook_url");
 	    String ebook_url_file = urlPart != null ? urlPart.getSubmittedFileName() : null;
 
-	    // Fetch existing ebook details to retain existing files if no new files are uploaded
 	    EBooks existingEBook = null;
 	    try {
-	        existingEBook = bookDAO.GetEBookById(ebook_id); // Assuming you have this method
+	        existingEBook = bookDAO.GetEBookById(ebook_id); 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error fetching eBook details.");
 	        return;
 	    }
 
-	    // Retain existing cover and URL file if no new files are uploaded
 	    if (ebook_cover == null || ebook_cover.isEmpty()) {
 	        ebook_cover = existingEBook.getCover();
 	    }
 	    if (ebook_url_file == null || ebook_url_file.isEmpty()) {
-	        ebook_url_file = existingEBook.getUrl(); // Assuming the URL is stored in the `EBooks` object
+	        ebook_url_file = existingEBook.getUrl(); 
 	    }
 
-	    // Create the updated EBooks object
 	    EBooks ebooks = new EBooks(
 	        ebook_id, ebook_isbn, ebook_title, ebook_cover, ebook_genre, ebook_author, 
 	        ebook_publisher, ebook_publish_date, ebook_url_file, registration_date
 	    );
 
 	    try {
-	        // Update the eBook details
 	        boolean result = bookDAO.EditEBooksDetail(ebooks);
 	        if (result) {
-	            // If a new cover or URL file was uploaded, save the files
 	            String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 	            String urlUploadPath = request.getServletContext().getRealPath("") + File.separator +  "\book_info_files";
 
-	            // Ensure the directories exist
 	            File uploadDir = new File(uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdir();
@@ -176,22 +168,18 @@ public class BookController extends HttpServlet {
 	                urlUploadDir.mkdir();
 	            }
 
-	            // Save the new cover file if a new one was uploaded
 	            if (coverPart != null && !ebook_cover.equals(existingEBook.getCover())) {
 	                String coverFilePath = uploadPath + File.separator + ebook_cover;
 	                coverPart.write(coverFilePath);
 	            }
 
-	            // Save the new ebook file (e.g., PDF) if a new one was uploaded
 	            if (urlPart != null && !ebook_url_file.equals(existingEBook.getUrl())) {
 	                String urlFilePath = urlUploadPath + File.separator + ebook_url_file;
 	                urlPart.write(urlFilePath);
 	            }
 
-	            // Redirect to the books page on success
 	            response.sendRedirect("WebPageController?action=books");
 	        } else {
-	            // Redirect to the books page on failure
 	            response.sendRedirect("WebPageController?action=books&error=updateFailed");
 	        }
 	    } catch (Exception e) {
@@ -225,10 +213,10 @@ public class BookController extends HttpServlet {
 	    String ebook_url_file = urlPart.getSubmittedFileName();
 
 		String registration_date = formatter.format(date);
-		System.out.print(registration_date);
+		
 	    // Create the EBooks object with the necessary data
 	    EBooks ebooks = new EBooks(ebook_isbn, ebook_title, ebook_cover, ebook_genre, ebook_author, ebook_publisher, ebook_publish_date, ebook_url_file, registration_date);
-	    System.out.print(ebooks.getRegistration_date());
+	    
 	    try {
 	        // Insert the EBook record into the database
 	        boolean result = bookDAO.AddEBooks(ebooks);
@@ -295,10 +283,9 @@ public class BookController extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // Assuming you have this method
+		} 
 
 		if (physicalbook_cover == null || physicalbook_cover.isEmpty()) {
-			// Keep the existing profile if no new file is uploaded
 			physicalbook_cover = existingBook.getCover();
 		}
 
@@ -354,9 +341,7 @@ public class BookController extends HttpServlet {
 		try {
 			boolean result = bookDAO.AddPhysicalBooks(physicalbooks);
 
-			if (result) { // Dynamic path retrieval
-				// String uploadPath = request.getServletContext().getRealPath("") +
-				// File.separator + "user_profile_images";
+			if (result) { 
 
 				String uploadPath = request.getServletContext().getRealPath("") + File.separator +  "book_info_images";
 				File uploadDir = new File(uploadPath);

@@ -1,45 +1,59 @@
 package model;
 
 public class EBookBorrow {
-	private int borrow_id;
-	private int user_id;
-	private String ISBN;
+	private String borrow_id;
+	private String user_id;
+	private String book_id;
 	private String borrow_date;
 	private String due_date;
 	private String status;
 
-	public EBookBorrow(int borrow_id, int user_id, String iSBN, String borrow_date, String due_date, String status) {
+	
+	public EBookBorrow(String user_id, String book_id, String borrow_date, String due_date, String status) {
 		super();
-		this.borrow_id = borrow_id;
 		this.user_id = user_id;
-		ISBN = iSBN;
+		this.book_id = book_id;
 		this.borrow_date = borrow_date;
 		this.due_date = due_date;
 		this.status = status;
 	}
 
-	public int getBorrow_id() {
+	public EBookBorrow(String borrow_id, String user_id, String book_id, String borrow_date, String due_date, String status) {
+		super();
+		this.borrow_id = borrow_id;
+		this.user_id = user_id;
+		this.book_id = book_id;
+		this.borrow_date = borrow_date;
+		this.due_date = due_date;
+		this.status = status;
+	}
+
+	public EBookBorrow() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getBorrow_id() {
 		return borrow_id;
 	}
 
-	public void setBorrow_id(int borrow_id) {
+	public void setBorrow_id(String borrow_id) {
 		this.borrow_id = borrow_id;
 	}
 
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
-	public String getISBN() {
-		return ISBN;
+	public String getBook_id() {
+		return book_id;
 	}
 
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setBook_id(String book_id) {
+		this.book_id = book_id;
 	}
 
 	public String getBorrow_date() {

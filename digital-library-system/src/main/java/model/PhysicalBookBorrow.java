@@ -1,22 +1,46 @@
 package model;
 
 public class PhysicalBookBorrow {
-	private int borrow_id;
-	private int user_id;
-	private String ISBN;
+	private String borrow_id;
+	private String user_id;
+	private String book_id;
 	private String borrow_date;
 	private String due_date;
 	private String return_date;
 	private String status;
 	private String pay_amount;
-	private int fine;
+	private String fine;
 
-	public PhysicalBookBorrow(int borrow_id, int user_id, String iSBN, String borrow_date, String due_date,
-			String return_date, String status, String pay_amount, int fine) {
+	
+
+	public PhysicalBookBorrow(String borrow_id, String return_date, String status) {
+		super();
+		this.borrow_id = borrow_id;
+		this.return_date = return_date;
+		this.status = status;
+	}
+
+	public PhysicalBookBorrow() {
+		super();
+	}
+
+	public PhysicalBookBorrow(String user_id, String book_id, String borrow_date, String due_date, String status,
+			String pay_amount) {
+		super();
+		this.user_id = user_id;
+		this.book_id = book_id;
+		this.borrow_date = borrow_date;
+		this.due_date = due_date;
+		this.status = status;
+		this.pay_amount = pay_amount;
+	}
+
+	public PhysicalBookBorrow(String borrow_id, String user_id, String book_id, String borrow_date, String due_date,
+			String return_date, String status, String pay_amount, String fine) {
 		super();
 		this.borrow_id = borrow_id;
 		this.user_id = user_id;
-		ISBN = iSBN;
+		this.book_id = book_id;
 		this.borrow_date = borrow_date;
 		this.due_date = due_date;
 		this.return_date = return_date;
@@ -25,33 +49,33 @@ public class PhysicalBookBorrow {
 		this.fine = fine;
 	}
 
-	public int getBorrow_id() {
+	public String getBorrow_id() {
 		return borrow_id;
 	}
 
 
-	public void setBorrow_id(int borrow_id) {
+	public void setBorrow_id(String borrow_id) {
 		this.borrow_id = borrow_id;
 	}
 
 
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
 
-	public String getISBN() {
-		return ISBN;
+	public String getbook_id() {
+		return book_id;
 	}
 
 
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setbook_id(String book_id) {
+		this.book_id = book_id;
 	}
 
 
@@ -105,12 +129,12 @@ public class PhysicalBookBorrow {
 	}
 
 
-	public int getFine() {
+	public String getFine() {
 		return fine;
 	}
 
 
-	public void setFine(int fine) {
-		this.fine = fine;
+	public void setFine(String string) {
+		this.fine = string;
 	}
 }

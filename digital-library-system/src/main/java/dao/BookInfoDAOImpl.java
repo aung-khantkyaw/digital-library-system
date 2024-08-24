@@ -16,16 +16,22 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	private Connection connection;
 	public PreparedStatement pstmt;
-
+	
 	public BookInfoDAOImpl(Connection connection) {
 		this.connection = connection;
 	}
 
+	//Author
+	String getAllAuthor_query = "SELECT * FROM author";
+	String getAuthorById_query = "SELECT * FROM author WHERE author_id = ?";
+	String addAuthor_query = "INSERT INTO author(author_name, author_profile, author_Biography) VALUES (?,?,?)";
+	String editAuthorsDetail_query = "UPDATE author SET author_name = ?, author_profile = ? , author_Biography = ? WHERE author_id = ? ";
+	String deleteAuthors_query = "DELETE FROM author WHERE author_id = ?";
+	
 	@Override
 	public List<Authors> GetAllAuthors() throws SQLException {
 		List<Authors> authors = new ArrayList<>();
-		String query = "SELECT * FROM author";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getAllAuthor_query);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			Authors author = new Authors();
@@ -41,8 +47,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 	@Override
 	public Authors GetAuthorById(String author_id) throws SQLException {
 		Authors author = null;
-		String query = "SELECT * FROM author WHERE author_id = ?";
-	    pstmt = connection.prepareStatement(query);
+	    pstmt = connection.prepareStatement(getAuthorById_query);
 	    pstmt.setString(1, author_id);
 	    ResultSet rs = pstmt.executeQuery();
 
@@ -59,8 +64,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean AddAuthor(Authors author) throws SQLException {
-		String query = "INSERT INTO author(author_name, author_profile, author_Biography) VALUES (?,?,?)";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(addAuthor_query);
 		pstmt.setString(1, author.getAuthor_name());
 		pstmt.setString(2, author.getAuthor_profile());
 		pstmt.setString(3, author.getAuthor_Biography());
@@ -70,8 +74,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean EditAuthorsDetail(Authors author) throws SQLException {
-		String query = "UPDATE author SET author_name = ?, author_profile = ? , author_Biography = ? WHERE author_id = ? ";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(editAuthorsDetail_query);
 		pstmt.setString(1, author.getAuthor_name());
 		pstmt.setString(2, author.getAuthor_profile());
 		pstmt.setString(3, author.getAuthor_Biography());
@@ -82,18 +85,23 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean DeleteAuthors(String author_id) throws SQLException {
-		String query = "DELETE FROM author WHERE author_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(deleteAuthors_query);
 		pstmt.setString(1, author_id);
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
 	}
+	
+	//Publisher
+	String getAllPublisher_query = "SELECT * FROM publisher";
+	String getPublisherById_query = "SELECT * FROM publisher WHERE publisher_id = ?";
+	String addPublisher_query = "INSERT INTO publisher( publisher_name, publisher_profile, publisher_address, publisher_email, publisher_phone_number) VALUES (?,?,?,?,?)";
+	String editPublishersDetail_query = "UPDATE publisher SET publisher_name = ? , publisher_profile = ? , publisher_address = ? , publisher_email = ? , publisher_phone_number = ? WHERE publisher_id = ? ";
+	String deletePublishers_query = "DELETE FROM publisher WHERE publisher_id = ?";
 
 	@Override
 	public List<Publishers> GetAllPublisher() throws SQLException {
 		List<Publishers> publishers = new ArrayList<>();
-		String query = "SELECT * FROM publisher";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getAllPublisher_query);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			Publishers publisher = new Publishers();
@@ -111,8 +119,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 	@Override
 	public Publishers GetPublisherById(String publisher_id) throws SQLException {
 		Publishers publisher = null;
-		String query = "SELECT * FROM publisher WHERE publisher_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getPublisherById_query);
 		pstmt.setString(1, publisher_id);
 		ResultSet rs = pstmt.executeQuery();
 		 if (rs.next()) {
@@ -130,8 +137,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean AddPublisher(Publishers publisher) throws SQLException {
-		String query = "INSERT INTO publisher( publisher_name, publisher_profile, publisher_address, publisher_email, publisher_phone_number) VALUES (?,?,?,?,?)";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(addPublisher_query);
 		pstmt.setString(1, publisher.getPublisher_name());
 		pstmt.setString(2, publisher.getPublisher_profile());
 		pstmt.setString(3, publisher.getPublisher_address());
@@ -143,8 +149,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean EditPublishersDetail(Publishers publisher) throws SQLException {
-		String query = "UPDATE publisher SET publisher_name = ? , publisher_profile = ? , publisher_address = ? , publisher_email = ? , publisher_phone_number = ? WHERE publisher_id = ? ";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(editPublishersDetail_query);
 		pstmt.setString(1, publisher.getPublisher_name());
 		pstmt.setString(2, publisher.getPublisher_profile());
 		pstmt.setString(3, publisher.getPublisher_address());
@@ -157,18 +162,22 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean DeletePublishers(String publisher_id) throws SQLException {
-		String query = "DELETE FROM publisher WHERE publisher_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(deletePublishers_query);
 		pstmt.setString(1, publisher_id);
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
 	}
 
+	//Genres
+	String getAllGenres_query = "SELECT * FROM genre";
+    String getGenreById_query = "SELECT * FROM genre WHERE genre_id = ?";
+    String addGenre_query = "INSERT INTO genre (genre_name) VALUES (?)";
+    String deleteGenre_query = "DELETE FROM genre WHERE genre_id = ?";
+    
 	@Override
 	public List<Genre> GetAllGenres() throws SQLException {
 		List<Genre> genres = new ArrayList<>();
-		String query = "SELECT * FROM genre";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getAllGenres_query);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			Genre genre = new Genre();
@@ -182,8 +191,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 	@Override
 	public Genre GetGenreById(String genre_id) throws SQLException {
 		Genre genre = null;
-        String query = "SELECT * FROM genre WHERE genre_id = ?";
-        pstmt = connection.prepareStatement(query);
+        pstmt = connection.prepareStatement(getGenreById_query);
         pstmt.setString(1, genre_id);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
@@ -195,8 +203,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean AddGenre(Genre genre) throws SQLException {
-		String query = "INSERT INTO genre (genre_name) VALUES (?)";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(addGenre_query);
 		pstmt.setString(1, genre.getGenre_name());
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
@@ -210,18 +217,23 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean DeleteGenre(String genre_id) throws SQLException {
-		String query = "DELETE FROM genre WHERE genre_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(deleteGenre_query);
 		pstmt.setString(1, genre_id);
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
 	}
 
+	//ShelfLocation
+	String getAllShelfLocation_query = "SELECT * FROM shelf_location";
+	String getShelfLocationById_query = "SELECT * FROM shelf_location WHERE shelf_id = ?";
+	String addShelfLocation_query = "INSERT INTO shelf_location (shelf_location) VALUES (?)";
+	String editShelfLocationDetail_query = "UPDATE shelf_location SET shelf_location = ? WHERE shelf_id = ?";
+	String deleteShelfLocation_query = "DELETE FROM shelf_location WHERE shelf_location = ?";
+	
 	@Override
 	public List<ShelfLocation> GetAllShelfLocation() throws SQLException {
 		List<ShelfLocation> shelfLocations = new ArrayList<>();
-		String query = "SELECT * FROM shelf_location";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(getAllShelfLocation_query);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			ShelfLocation shelfLocation = new ShelfLocation();
@@ -235,8 +247,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 	@Override
 	public ShelfLocation GetShelfLocationById(String shelfId) throws SQLException {
 		ShelfLocation shelfLocation = null;
-        String query = "SELECT * FROM shelf_location WHERE shelf_id = ?";
-        pstmt = connection.prepareStatement(query);
+        pstmt = connection.prepareStatement(getShelfLocationById_query);
         pstmt.setString(1, shelfId);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
@@ -248,8 +259,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean AddShelfLocation(ShelfLocation shelfLocation) throws SQLException {
-		String query = "INSERT INTO shelf_location (shelf_location) VALUES (?)";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(addShelfLocation_query);
 		pstmt.setString(1, shelfLocation.getShelf_location());
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
@@ -257,8 +267,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean EditShelfLocationDetail(ShelfLocation shelfLocation) throws SQLException {
-		String query = "UPDATE shelf_location SET shelf_location = ? WHERE shelf_id = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(editShelfLocationDetail_query);
 		pstmt.setString(1, shelfLocation.getShelf_location());
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
@@ -266,8 +275,7 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 
 	@Override
 	public boolean DeleteShelfLocation(String shelf_location) throws SQLException {
-		String query = "DELETE FROM shelf_location WHERE shelf_location = ?";
-		pstmt = connection.prepareStatement(query);
+		pstmt = connection.prepareStatement(deleteShelfLocation_query);
 		pstmt.setString(1, shelf_location);
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;

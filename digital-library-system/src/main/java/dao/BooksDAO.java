@@ -9,28 +9,6 @@ import model.PhysicalBookBorrow;
 import model.PhysicalBooks;
 
 public interface BooksDAO {
-	 // Physical Book Borrowing Operations
-    public List<PhysicalBookBorrow> getAllPhysicalBorrows();
-
-    public PhysicalBookBorrow getPhysicalBorrowById(String borrow_id);
-
-    public boolean addPhysicalBorrow(PhysicalBookBorrow physical_borrow) throws SQLException;
-
-    public boolean updatePhysicalBorrow(PhysicalBookBorrow physical_borrow) throws SQLException;
-
-    public boolean deletePhysicalBorrow(String borrow_id) throws SQLException;
-
-    // E-Book Borrowing Operations
-    public List<EBookBorrow> getAllEBookBorrows();
-
-    public EBookBorrow getEBookBorrowById(String borrow_id);
-
-    public boolean addEBookBorrow(EBookBorrow ebook_borrow) throws SQLException;
-
-    public boolean updateEBookBorrow(EBookBorrow ebook_borrow) throws SQLException;
-
-    public boolean deleteEBookBorrow(String borrow_id) throws SQLException;
-
 	//Physical Books
 	public List<PhysicalBooks> GetAllPhysicalBooks() throws SQLException;
 

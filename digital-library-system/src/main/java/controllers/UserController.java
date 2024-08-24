@@ -133,11 +133,60 @@ public class UserController extends HttpServlet {
 		case "addUser":
 			addUser(request, response);
 			break;
+		case "editUser":
+			editUser(request, response);
+			break;
 		case "login":
 			loginUser(request, response);
 			break;
 		}
 	}
+
+	private void editUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String user_id = request.getParameter("user_id");
+	    String username = request.getParameter("username");
+	    String email = request.getParameter("email");
+	    String phoneNumber = request.getParameter("phone_number");
+	    String address = request.getParameter("address");
+	    Part part = request.getPart("profile");
+		String profile = part.getSubmittedFileName();
+		
+		Users existingUser = null;
+		try {
+			existingUser = userDAO.GetUsersById(user_id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (profile == null || profile.isEmpty()) {
+			profile = existingUser.getProfile();
+		}
+	   
+		Users user = new Users(user_id, username, email, phoneNumber, profile, address);
+		try {
+			boolean result = userDAO.EditUsersDetail(user);
+			if (result) { // Dynamic path retrieval
+				if (!profile.equals(existingUser.getProfile())) {
+					// Save the new file if a new file is uploaded
+					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "user_profile_images";
+					File uploadDir = new File(uploadPath);
+					if (!uploadDir.exists()) {
+						uploadDir.mkdir();
+					}
+
+					String filePath = uploadPath + File.separator + profile;
+					part.write(filePath);
+				}
+				System.out.print("change");
+				response.sendRedirect("WebPageController?action=profile");
+			} else {
+				response.sendRedirect("WebPageController?action=profile");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void addUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -177,7 +226,6 @@ public class UserController extends HttpServlet {
 				String filePath = uploadPath + File.separator + profile;
 			    part.write(filePath);
 
-				// Save the file part.write(uploadDir + File.separator + profile);
 				session.setAttribute("succMsg", "User Registration Success...");
 				response.sendRedirect("index.jsp");
 			} else {

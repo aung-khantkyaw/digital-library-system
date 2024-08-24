@@ -49,4 +49,14 @@
     <servlet-name>BookController</servlet-name>
     <url-pattern>/BookController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BookBorrowController</display-name>
+    <servlet-name>BookBorrowController</servlet-name>
+    <servlet-class>controllers.BookBorrowController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookBorrowController</servlet-name>
+    <url-pattern>/BookBorrowController</url-pattern>
+  </servlet-mapping>
 </web-app>

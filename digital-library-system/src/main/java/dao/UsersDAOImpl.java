@@ -25,6 +25,7 @@ public class UsersDAOImpl implements UsersDAO {
 	public String activateUser_query = "UPDATE user SET status = 'Active' WHERE user_id = ? AND status = 'Pending'";
 	public String banUser_query = "UPDATE user SET status = 'Banned' WHERE user_id = ? AND status = 'Active'";
 	public String delete_query = "DELETE FROM user WHERE user_id = ?";
+	public String editUsersDetail_query = "UPDATE user SET username= ? , email= ? , phone_number = ? , profile = ? , address = ? WHERE  user_id= ?";
 
 	public UsersDAOImpl(Connection conn) throws SQLException {
 		super();
@@ -92,11 +93,10 @@ public class UsersDAOImpl implements UsersDAO {
 
 			if (rs.next()) {
 				String encryptedPassword = rs.getString("password");
-				String key = rs.getString("password_key"); // Replace with a secure key
+				String key = rs.getString("password_key"); 
 				String decryptedPassword = Helper.decrypt(encryptedPassword, key);
-
 				if (decryptedPassword.equals(password)) {
-
+					
 					user = new Users();
 					user.setUser_id(rs.getString(1));
 					user.setUsername(rs.getString(2));
@@ -109,18 +109,25 @@ public class UsersDAOImpl implements UsersDAO {
 				}
 			}
 		} catch (SQLException e) {
-			System.err.println("Error logging in: " + e.getMessage());
+			System.out.println("Error logging in: " + e.getMessage());
 		} catch (Exception e) {
-			System.err.println("Error decrypting password: " + e.getMessage());
+			System.out.println("Error decrypting password: " + e.getMessage());
 		}
-
 		return user;
 	}
 
 	@Override
 	public boolean EditUsersDetail(Users user) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		pstmt = connection.prepareStatement(editUsersDetail_query);
+		pstmt.setString(1, user.getUsername());
+		pstmt.setString(2, user.getEmail());
+		pstmt.setString(3, user.getPhone_number());
+		pstmt.setString(4, user.getProfile());
+		pstmt.setString(5, user.getAddress());
+		pstmt.setString(6, user.getUser_id());
+		int rowsAffected = pstmt.executeUpdate();
+		System.out.print(rowsAffected);
+		return rowsAffected > 0;
 	}
 
 	@Override

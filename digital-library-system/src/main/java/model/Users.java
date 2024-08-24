@@ -16,9 +16,17 @@ public class Users {
 	public Users() {
 		super();
 	}
+	
+	public Users(String user_id, String username, String email, String phone_number, String profile, String address) {
+		super();
+		this.user_id = user_id;
+		this.username = username;
+		this.email = email;
+		this.phone_number = phone_number;
+		this.profile = profile;
+		this.address = address;
+	}
 
-	
-	
 	public Users(String user_id, String username, String email, String phone_number, String profile, String address,
 			String role, String status) {
 		super();

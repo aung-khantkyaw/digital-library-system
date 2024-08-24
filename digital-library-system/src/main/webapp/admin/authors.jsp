@@ -11,6 +11,7 @@ if (isLoggedIn) {
 <%@ include file="../layout/head.jsp"%>
 <%@ include file="../layout/header.jsp"%>
 
+
 <section class="section">
 	<div class="row">
 		<div class="col-lg-12">
