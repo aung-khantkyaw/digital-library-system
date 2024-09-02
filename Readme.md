@@ -36,7 +36,6 @@ This project provides a web-based interface to access a digital library's resour
 - Java Development Kit (JDK)
 - Apache Tomcat (or any servlet container)
 - MySQL Database (or any relational database system)
-- Maven (for building the project)
 - A modern web browser
 
 ### Step-by-Step Setup
@@ -68,15 +67,14 @@ This project provides a web-based interface to access a digital library's resour
 
 ## Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap
-- **Backend**: Java, JSP, Servlets, J2EE, Hibernate
+- **Frontend**: HTML, CSS, JavaScrip
+- **Backend**: Java, JSP, Servlets, J2EE
 - **Database**: MySQL
-- **Build Tool**: Maven
 - **Server**: Apache Tomcat
 
 ## Database Schema
 
-The `db_lbms.sql` file provides the database schema, which includes the following tables and triggers:
+The `digital_library_system.sql` file provides the database schema, which includes the following tables and triggers:
 
 ### **Tables**
 
