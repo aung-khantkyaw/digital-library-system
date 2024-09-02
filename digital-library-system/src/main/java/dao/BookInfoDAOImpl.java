@@ -210,12 +210,6 @@ public class BookInfoDAOImpl implements BookInfoDAO {
 	}
 
 	@Override
-	public boolean EditGenresDetail(Genre genre) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean DeleteGenre(String genre_id) throws SQLException {
 		pstmt = connection.prepareStatement(deleteGenre_query);
 		pstmt.setString(1, genre_id);

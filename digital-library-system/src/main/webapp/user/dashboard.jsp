@@ -1,4 +1,3 @@
-
 <%
 boolean isLoggedIn = Helper.isLoggedIn(session);
 if (isLoggedIn) {

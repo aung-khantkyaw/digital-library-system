@@ -6,9 +6,6 @@
 boolean isLoggedIn = Helper.isLoggedIn(session);
 if (isLoggedIn) {
 	List<Users> all_users = (List<Users>) session.getAttribute("all_users");
-	/* for (Users user : users) {
-		System.out.println(user.getUsername() + " in jsp " + user.getEmail());
-	} */
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -100,7 +97,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

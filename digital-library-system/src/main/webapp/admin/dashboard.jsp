@@ -11,10 +11,8 @@ if (isLoggedIn) {
 
 <section class="section dashboard">
 	<div class="row">
-		<!-- Left side columns -->
 		<div class="col-lg-12">
 			<div class="row">
-				<!-- Sales Card -->
 				<div class="col-xxl-4 col-md-6">
 					<div class="card info-card sales-card">
 						<div class="card-body">
@@ -33,9 +31,6 @@ if (isLoggedIn) {
 						</div>
 					</div>
 				</div>
-				<!-- End Sales Card -->
-
-				<!-- Revenue Card -->
 				<div class="col-xxl-4 col-md-6">
 					<div class="card info-card revenue-card">
 						<div class="card-body">
@@ -55,9 +50,6 @@ if (isLoggedIn) {
 						</div>
 					</div>
 				</div>
-				<!-- End Revenue Card -->
-
-				<!-- Customers Card -->
 				<div class="col-xxl-4 col-xl-12">
 					<div class="card info-card customers-card">
 						<div class="card-body">
@@ -77,132 +69,118 @@ if (isLoggedIn) {
 						</div>
 					</div>
 				</div>
-				<!-- End Customers Card -->
-
-				<!-- Reports -->
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Reports</h5>
 
-							<!-- Line Chart -->
 							<div id="reportsChart"></div>
 
 							<script>
 							
-							function getLast7DaysISOString() {
-	                    	    const datesArray = [];
-	                    	    const today = new Date();
-
-	                    	    for (let i = 0; i < 7; i++) {
-	                    	        const pastDate = new Date(today);
-	                    	        pastDate.setDate(today.getDate() - i);
-	                    	        datesArray.unshift(formatDateToISOString(pastDate));
-	                    	    }
-
-	                    	    return datesArray;
-	                    	}
-							
-		                      function formatDateToISOString(date) {
-		                        // Convert to UTC and return the ISO string
-		                        return new Date(
-		                          Date.UTC(
-		                            date.getFullYear(),
-		                            date.getMonth(),
-		                            date.getDate()
-		                          )
-		                        ).toISOString();
-		                      }
-		
-		                      function getLast7Days() {
+								function getLast7DaysISOString() {
 		                    	    const datesArray = [];
 		                    	    const today = new Date();
-		
 		                    	    for (let i = 0; i < 7; i++) {
 		                    	        const pastDate = new Date(today);
 		                    	        pastDate.setDate(today.getDate() - i);
-		                    	        datesArray.unshift(formatDateToCustomFormat(pastDate));
+		                    	        datesArray.unshift(formatDateToISOString(pastDate));
 		                    	    }
-		
 		                    	    return datesArray;
 		                    	}
-		
-		                    	function formatDateToCustomFormat(date) {
-		                    	    const day = String(date.getDate()).padStart(2, '0');
-		                    	    const month = String(date.getMonth() + 1).padStart(2, '0');
-		                    	    const year = String(date.getFullYear()).slice(-2); // Get the last two digits of the year
-		
-		                    	    return day + "/" + month + "/" + year;
-		                    	}              	
+								
+			                    function formatDateToISOString(date) {
+			                        return new Date(
+			                          Date.UTC(
+			                            date.getFullYear(),
+			                            date.getMonth(),
+			                            date.getDate()
+			                          )
+			                        ).toISOString();
+			                   	}
+			
+			                      function getLast7Days() {
+			                    	    const datesArray = [];
+			                    	    const today = new Date();
+			                    	    for (let i = 0; i < 7; i++) {
+			                    	        const pastDate = new Date(today);
+			                    	        pastDate.setDate(today.getDate() - i);
+			                    	        datesArray.unshift(formatDateToCustomFormat(pastDate));
+			                    	    }
+			                    	    return datesArray;
+			                    	}
+			
+			                    	function formatDateToCustomFormat(date) {
+			                    	    const day = String(date.getDate()).padStart(2, '0');
+			                    	    const month = String(date.getMonth() + 1).padStart(2, '0');
+			                    	    const year = String(date.getFullYear()).slice(-2);
+			                    	    return day + "/" + month + "/" + year;
+			                    	}              	
                       
                       
-                      document.addEventListener("DOMContentLoaded", () => {
-                        new ApexCharts(
-                          document.querySelector("#reportsChart"),
-                          {
-                            series: [
-                              {
-                                name: "Physical Book",
-                                data: [<%=physicalCount[6]%> , <%=physicalCount[5]%> , <%=physicalCount[4]%> , <%=physicalCount[3]%> , <%=physicalCount[2]%> , <%=physicalCount[1]%> , <%=physicalCount[0]%>],
-                              },
-                              {
-                                  name: "EBooks",
-                                  data: [<%=ebookCount[6]%> , <%=ebookCount[5]%> , <%=ebookCount[4]%> , <%=ebookCount[3]%> , <%=ebookCount[2]%> , <%=ebookCount[1]%> , <%=ebookCount[0]%>],
-                                },
-                              {
-                                name: "Users",
-                                data: [<%=userCount[6]%> , <%=userCount[5]%> , <%=userCount[4]%> , <%=userCount[3]%> , <%=userCount[2]%> , <%=userCount[1]%> , <%=userCount[0]%>],
-                              },
-                            ],
-                            chart: {
-                              height: 350,
-                              type: "area",
-                              toolbar: {
-                                show: false,
-                              },
-                            },
-                            markers: {
-                              size: 4,
-                            },
-                            colors: ["#4154f1", "#2eca6a", "#ff771d"],
-                            fill: { 
-                              type: "gradient",
-                              gradient: {
-                                shadeIntensity: 1,
-                                opacityFrom: 0.3,
-                                opacityTo: 0.4,
-                                stops: [0, 90, 100],
-                              },
-                            },
-                            dataLabels: {
-                              enabled: false,
-                            },
-                            stroke: {
-                              curve: "smooth",
-                              width: 2,
-                            },
-                            xaxis: {
-                              type: "datetime",
-                              categories: getLast7DaysISOString(),
-                            },
-                            tooltip: {
-                              x: {
-                                format: "dd/MM/yy",
-                              },
-                            },
-                          }
-                        ).render();
-                      });
-                    </script>
-							<!-- End Line Chart -->
+			                      document.addEventListener("DOMContentLoaded", () => {
+			                        new ApexCharts(
+			                          document.querySelector("#reportsChart"),
+			                          {
+			                            series: [
+			                              {
+			                                name: "Physical Book",
+			                                data: [<%=physicalCount[6]%> , <%=physicalCount[5]%> , <%=physicalCount[4]%> , <%=physicalCount[3]%> , <%=physicalCount[2]%> , <%=physicalCount[1]%> , <%=physicalCount[0]%>],
+			                              },
+			                              {
+			                                  name: "EBooks",
+			                                  data: [<%=ebookCount[6]%> , <%=ebookCount[5]%> , <%=ebookCount[4]%> , <%=ebookCount[3]%> , <%=ebookCount[2]%> , <%=ebookCount[1]%> , <%=ebookCount[0]%>],
+			                                },
+			                              {
+			                                name: "Users",
+			                                data: [<%=userCount[6]%> , <%=userCount[5]%> , <%=userCount[4]%> , <%=userCount[3]%> , <%=userCount[2]%> , <%=userCount[1]%> , <%=userCount[0]%>],
+			                              },
+			                            ],
+			                            chart: {
+			                              height: 350,
+			                              type: "area",
+			                              toolbar: {
+			                                show: false,
+			                              },
+			                            },
+			                            markers: {
+			                              size: 4,
+			                            },
+			                            colors: ["#4154f1", "#2eca6a", "#ff771d"],
+			                            fill: { 
+			                              type: "gradient",
+			                              gradient: {
+			                                shadeIntensity: 1,
+			                                opacityFrom: 0.3,
+			                                opacityTo: 0.4,
+			                                stops: [0, 90, 100],
+			                              },
+			                            },
+			                            dataLabels: {
+			                              enabled: false,
+			                            },
+			                            stroke: {
+			                              curve: "smooth",
+			                              width: 2,
+			                            },
+			                            xaxis: {
+			                              type: "datetime",
+			                              categories: getLast7DaysISOString(),
+			                            },
+			                            tooltip: {
+			                              x: {
+			                                format: "dd/MM/yy",
+			                              },
+			                            },
+			                          }
+			                        ).render();
+			                      });
+			                    </script>
 						</div>
 					</div>
 				</div>
-				<!-- End Reports -->
 			</div>
 		</div>
-		<!-- End Left side columns -->
-
 	</div>
 </section>
 <%@ include file="../layout/footer.jsp"%>

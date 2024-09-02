@@ -23,11 +23,8 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between">
 						<h5 class="card-title">Author List</h5>
-
-
 					</div>
 
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -38,12 +35,8 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 						</thead>
 						<tbody>
 							<%
-							// Retrieve the shelfLocations list from the session
 							List<Authors> authors = (List<Authors>) session.getAttribute("authors");
-
-							// Check if the list is not null and not empty
 							if (authors != null && !authors.isEmpty()) {
-								// Iterate through the list and display the shelf locations
 								for (Authors author : authors) {
 							%>
 							<tr>
@@ -56,8 +49,7 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 										class="btn btn-primary">
 										<i class="bi bi-arrow-up-left-square"></i> Detail
 									</button>
-									<div class="modal fade"
-										id="authorDetail<%=author.getAuthor_id()%>" tabindex="-1">
+									<div class="modal fade" id="authorDetail<%=author.getAuthor_id()%>" tabindex="-1">
 										<div class="modal-dialog modal-dialog-centered modal-xl">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -109,7 +101,8 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 
 												</div>
 											</div>
-										</div></td>
+										</div>
+									</td>
 							</tr>
 							<%
 							}
@@ -117,7 +110,6 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

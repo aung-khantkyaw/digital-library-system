@@ -22,8 +22,6 @@ if (isLoggedIn) {
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -40,11 +38,6 @@ if (isLoggedIn) {
 							%>
 							<tr>
 								<%
-								for (Users each_user : all_users) {
-									if (each_user.getUser_id().equals(ebookBorrow.getUser_id())) {
-
-									}
-								}
 								for (EBooks book : ebookList) {
 									if (book.getBook_id().equals(ebookBorrow.getBook_id())) {
 								%>
@@ -55,9 +48,10 @@ if (isLoggedIn) {
 									href="../WebPageController?action=ebook&ebook=<%=book.getUrl()%>"><%=book.getTitle()%></a>
 									<%
 									} else {
-									%> <%=book.getTitle()%> <% } %>
+									%> <%=book.getTitle()%>
 								</td>
 								<%
+								}
 								}
 								}
 								%>
@@ -79,7 +73,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

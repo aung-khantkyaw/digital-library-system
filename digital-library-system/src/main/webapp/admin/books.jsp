@@ -24,9 +24,6 @@ List<Authors> authors = (List<Authors>) session.getAttribute("authors");
 List<Publishers> publishers = (List<Publishers>) session.getAttribute("publishers");
 List<Genre> genres = (List<Genre>) session.getAttribute("genres");
 List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute("shelfLocations");
-/* for (PhysicalBooks physicalBook : physicalBooks) {
-	System.out.print(physicalBook.getBook_id());
-} */
 %>
 
 <section class="section">
@@ -165,7 +162,6 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 						</div>
 					</div>
 
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -180,7 +176,6 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 						</thead>
 						<tbody>
 							<%
-							// Retrieve booksList from the session
 							if (booksList != null && !booksList.isEmpty()) {
 								for (PhysicalBooks book : booksList) {
 							%>
@@ -430,30 +425,26 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 																		}
 																		}
 																		%>
-																		<li class="list-group-item"><%= book.getPublish_date() %></li>
+																		<li class="list-group-item"><%=book.getPublish_date()%></li>
 																	</ul>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="modal-footer">
-												</div>
+												<div class="modal-footer"></div>
 											</div>
 										</div>
 									</div> <a
 									href="../BookController?action=deletePhysicalBook&book_id=<%=book.getBook_id()%>"
 									class="btn btn-danger"><i class="ri-delete-back-2-line"></i></a></td>
 							</tr>
-
 							<%
 							}
 							}
 							%>
-
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>
@@ -575,7 +566,6 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 						</div>
 					</div>
 
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -589,8 +579,6 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 						</thead>
 						<tbody>
 							<%
-							// Retrieve booksList from the session
-							
 							if (ebookList != null && !ebookList.isEmpty()) {
 								for (EBooks ebook : ebookList) {
 							%>
@@ -652,7 +640,6 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 																class="form-control" placeholder="ISBN"
 																aria-label="ISBN" name="ebook_isbn"
 																value="<%=ebook.getISBN()%>"
-																"
 																aria-describedby="basic-addon1" />
 														</div>
 														<div class="input-group mb-3">
@@ -800,14 +787,12 @@ List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute(
 									href="../BookController?action=deleteEBook&book_id=<%=ebook.getBook_id()%>"
 									class="btn btn-danger"><i class="ri-delete-back-2-line"></i></a></td>
 							</tr>
-
 							<%
 							}
 							}
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

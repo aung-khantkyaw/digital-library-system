@@ -39,8 +39,6 @@ public interface BookInfoDAO {
 
 	public boolean AddGenre(Genre genre) throws SQLException;
 
-	public boolean EditGenresDetail(Genre genre) throws SQLException;
-
 	public boolean DeleteGenre(String genre_id) throws SQLException;
 
 	//ShelfLocation

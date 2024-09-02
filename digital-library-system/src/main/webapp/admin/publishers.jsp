@@ -79,8 +79,6 @@ if (isLoggedIn) {
 							</div>
 						</div>
 					</div>
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -91,12 +89,8 @@ if (isLoggedIn) {
 						</thead>
 						<tbody>
 							<%
-							// Retrieve the shelfLocations list from the session
 							List<Publishers> publishers = (List<Publishers>) session.getAttribute("publishers");
-
-							// Check if the list is not null and not empty
 							if (publishers != null && !publishers.isEmpty()) {
-								// Iterate through the list and display the shelf locations
 								for (Publishers publisher : publishers) {
 							%>
 							<tr>
@@ -208,7 +202,6 @@ if (isLoggedIn) {
 																			class="bi bi-mailbox me-1 text-primary"></i> <%=publisher.getPublisher_email()%></li>
 																		<li class="list-group-item"><i
 																			class="bi bi-telephone me-1 text-danger"></i> <%=publisher.getPublisher_phone_number()%></li>
-																		
 																	</ul>
 																</div>
 															</div>
@@ -230,7 +223,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

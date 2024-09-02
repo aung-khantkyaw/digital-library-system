@@ -47,8 +47,6 @@
 							<div class="card mb-3">
 								<div class="card-body">
 									<h5 class="card-title">Create an Account</h5>
-
-									<!-- Multi Columns Form -->
 									<form class="row g-3" action="UserController" method="post"
 										enctype="multipart/form-data">
 										<input type="hidden" name="action" value="addUser">
@@ -103,7 +101,6 @@
 											</p>
 										</div>
 									</form>
-									<!-- End Multi Columns Form -->
 
 								</div>
 							</div>
@@ -114,7 +111,6 @@
 			</section>
 		</div>
 	</main>
-	<!-- End #main -->
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i

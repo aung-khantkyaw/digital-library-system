@@ -31,7 +31,6 @@ if (isLoggedIn) {
 						</form>
 					</div>
 
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -42,12 +41,9 @@ if (isLoggedIn) {
 						</thead>
 						<tbody>
 							<%
-							// Retrieve the shelfLocations list from the session
 							List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute("shelfLocations");
 
-							// Check if the list is not null and not empty
 							if (shelfLocations != null && !shelfLocations.isEmpty()) {
-								// Iterate through the list and display the shelf locations
 								for (ShelfLocation location : shelfLocations) {
 							%>
 							<tr>
@@ -63,7 +59,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

@@ -21,8 +21,6 @@ if (isLoggedIn) {
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -41,7 +39,6 @@ if (isLoggedIn) {
 								if (physicalBorrow.getUser_id().equals(user.getUser_id())) {
 							%>
 							<tr>
-
 								<%
 								for (PhysicalBooks book : booksList) {
 									if (book.getBook_id().equals(physicalBorrow.getbook_id())) {
@@ -72,7 +69,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

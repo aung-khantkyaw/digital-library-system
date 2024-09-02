@@ -16,8 +16,6 @@ public interface UsersDAO {
 	public Users UserLogin(String email, String password) throws SQLException, Exception;
 
 	public boolean UserRegistration(Users user) throws Exception;
-	
-	public boolean UserPending(Users user) throws Exception;
 
 	public boolean EditUsersDetail(Users user) throws SQLException;
 

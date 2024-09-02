@@ -10,7 +10,6 @@ if (isLoggedIn) {
 
 <%@ page import="java.util.List"%>
 <%
-// Get the 'ebook' data passed from the servlet
 String ebook = request.getParameter("ebook");
 %>
 <style>
@@ -31,20 +30,16 @@ canvas {
 	<script>
         const url = '../book_info_files/<%=ebook%>'; // Path to the PDF file
 
-        // Load the PDF file
         pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
             const pdfContainer = document.getElementById('pdf-container');
             
-            // Get the total number of pages
             const numPages = pdfDoc.numPages;
 
-            // Loop through each page
             for (let pageNum = 1; pageNum <= numPages; pageNum++) {
                 pdfDoc.getPage(pageNum).then(function(page) {
                     const scale = 1;
                     const viewport = page.getViewport({ scale });
 
-                    // Create a canvas element for the page
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.className = 'pdf-page';
@@ -52,7 +47,6 @@ canvas {
                     canvas.width = viewport.width; 
                     pdfContainer.appendChild(canvas);
 
-                    // Render the page onto the canvas
                     const renderContext = {
                         canvasContext: context,
                         viewport: viewport

@@ -17,6 +17,7 @@ public class UsersDAOImpl implements UsersDAO {
 
 	private Connection connection;
 	public PreparedStatement pstmt;
+	
 	public String getAll_query = "SELECT * FROM user WHERE status = 'Active'";
 	public String getAllPending_query = "SELECT * FROM user WHERE status = 'Pending'";
 	public String getuserbyId_query = "SELECT * FROM user WHERE user_id = ?";
@@ -174,12 +175,6 @@ public class UsersDAOImpl implements UsersDAO {
 			int affectedRows = pstmt.executeUpdate();
 			return affectedRows > 0;
 		}
-	}
-
-	@Override
-	public boolean UserPending(Users user) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

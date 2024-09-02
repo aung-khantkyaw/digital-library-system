@@ -111,7 +111,6 @@ public class UserController extends HttpServlet {
 			session.invalidate();
 		}
 
-		// Redirect to login page or home page
 		response.sendRedirect("login.jsp");
 	}
 	
@@ -122,12 +121,6 @@ public class UserController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		 * String fullURL = request.getRequestURL().toString(); String lastPath =
-		 * Helper.getLastPartOfURL(fullURL); String action =
-		 * request.getParameter(lastPath);
-		 */
-
 		String action = request.getParameter("action");
 		switch (action) {
 		case "addUser":
@@ -150,7 +143,6 @@ public class UserController extends HttpServlet {
 	    String address = request.getParameter("address");
 	    Part part = request.getPart("profile");
 		String profile = part.getSubmittedFileName();
-		
 		Users existingUser = null;
 		try {
 			existingUser = userDAO.GetUsersById(user_id);
@@ -165,19 +157,16 @@ public class UserController extends HttpServlet {
 		Users user = new Users(user_id, username, email, phoneNumber, profile, address);
 		try {
 			boolean result = userDAO.EditUsersDetail(user);
-			if (result) { // Dynamic path retrieval
+			if (result) { 
 				if (!profile.equals(existingUser.getProfile())) {
-					// Save the new file if a new file is uploaded
 					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "user_profile_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
 						uploadDir.mkdir();
 					}
-
 					String filePath = uploadPath + File.separator + profile;
 					part.write(filePath);
 				}
-				System.out.print("change");
 				response.sendRedirect("WebPageController?action=profile");
 			} else {
 				response.sendRedirect("WebPageController?action=profile");
@@ -214,7 +203,7 @@ public class UserController extends HttpServlet {
 			boolean result = userDAO.UserRegistration(user);
 			HttpSession session = request.getSession();
 
-			if (result) { // Dynamic path retrieval
+			if (result) {
 
 				String uploadPath = request.getServletContext().getRealPath("") + File.separator + "user_profile_images";
 

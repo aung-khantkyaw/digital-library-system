@@ -1,4 +1,3 @@
-
 <%
 boolean isLoggedIn = Helper.isLoggedIn(session);
 if (isLoggedIn) {
@@ -39,7 +38,7 @@ List<EBookBorrow> ebookBorrows = (List<EBookBorrow>) session.getAttribute("ebook
 			data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 	<%
-	session.removeAttribute("ebookBorrowMsg"); // Clear the message after retrieving it
+	session.removeAttribute("ebookBorrowMsg"); 
 	}
 	%>
 
@@ -51,7 +50,6 @@ List<EBookBorrow> ebookBorrows = (List<EBookBorrow>) session.getAttribute("ebook
 						<h5 class="card-title">E Books List</h5>
 					</div>
 
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -158,7 +156,7 @@ List<EBookBorrow> ebookBorrows = (List<EBookBorrow>) session.getAttribute("ebook
 																			<tr>
 																				<th scope="row">Read at</th>
 																				<td><a
-																					href="../WebPageController?action=ebook&ebook=<%=ebook.getUrl()%>"><%=ebook.getUrl()%></a></td>
+																					href="../WebPageController?action=ebook&ebook=<%=ebook.getUrl()%>"><%=ebook.getTitle()%></a></td>
 																			</tr>
 																			<%
 																			}
@@ -180,15 +178,12 @@ List<EBookBorrow> ebookBorrows = (List<EBookBorrow>) session.getAttribute("ebook
 										</div>
 									</div></td>
 							</tr>
-
 							<%
 							}
 							}
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
-
 				</div>
 			</div>
 		</div>

@@ -26,8 +26,6 @@ if (isLoggedIn) {
 					<div class="d-flex align-items-center justify-content-between">
 						<h5 class="card-title">Physical Book Borrow</h5>
 					</div>
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -89,7 +87,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>
@@ -104,8 +101,6 @@ if (isLoggedIn) {
 					<div class="d-flex align-items-center justify-content-between">
 						<h5 class="card-title">E Book Borrow</h5>
 					</div>
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -157,7 +152,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

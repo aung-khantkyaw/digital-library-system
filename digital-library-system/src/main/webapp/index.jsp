@@ -15,7 +15,6 @@ Users user = (Users) session.getAttribute("user");
 <meta content="" name="description" />
 <meta content="" name="keywords" />
 
-<!-- Favicons -->
 <link href="assets/img/online-library.png" rel="icon" />
 <link href="assets/img/online-library.png" rel="apple-touch-icon" />
 
@@ -25,7 +24,6 @@ Users user = (Users) session.getAttribute("user");
 	background: rgba(255, 255, 255, 0);
 	backdrop-filter: blur(20px);
 	border-radius: 10px;
-	/* box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff; */
 	padding: 20px;
 	margin: 20px;
 }
@@ -51,7 +49,6 @@ Users user = (Users) session.getAttribute("user");
 				if (isLoggedIn) {
 				%>
 				<div class="ml-4 flex items-center md:ml-6">
-					<!-- Profile dropdown -->
 					<div class="relative ml-3">
 						<div>
 							<div
@@ -88,10 +85,18 @@ Users user = (Users) session.getAttribute("user");
 						class="relative rounded-full px-3 py-1 text-md font-bold leading-6 text-indigo-100 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
 						a revolution in accessing knowledge at your fingertips</div>
 				</div>
-				<p class="mt-6 text-lg leading-8 text-gray-100 font-bold">
+				<p class="hidden lg:block mt-6 text-lg leading-8 text-gray-100 font-bold">
 					Discover a world of knowledge at your fingertips with our Digital
 					Library System.<br /> Seamlessly access a vast collection of
 					books, articles resources anytime, anywhere.<br /> Experience the
+					ultimate in convenience and efficiency with advanced search
+					features and a user-friendly interface designed to enhance your
+					research and reading experience.
+				</p>
+				<p class="lg:hidden mt-6 text-lg leading-8 text-gray-100 font-bold">
+					Discover a world of knowledge at your fingertips with our Digital
+					Library System. Seamlessly access a vast collection of
+					books, articles resources anytime, anywhere. Experience the
 					ultimate in convenience and efficiency with advanced search
 					features and a user-friendly interface designed to enhance your
 					research and reading experience.

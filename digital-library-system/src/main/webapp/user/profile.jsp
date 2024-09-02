@@ -26,7 +26,6 @@ for (Users userData : all_users) {
         break; 
     }
 }
-
 %>
 <section class="section profile">
 	<div class="row">
@@ -47,7 +46,6 @@ for (Users userData : all_users) {
 
 			<div class="card">
 				<div class="card-body pt-3">
-					<!-- Bordered Tabs -->
 					<ul class="nav nav-tabs nav-tabs-bordered">
 
 						<li class="nav-item">
@@ -90,8 +88,6 @@ for (Users userData : all_users) {
 						</div>
 
 						<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-							<!-- Profile Edit Form -->
 							<form action="../UserController" method="post"
 								enctype="multipart/form-data">
 								<input type="hidden" name="action" value="editUser"> <input
@@ -144,14 +140,8 @@ for (Users userData : all_users) {
 										Changes</button>
 								</div>
 							</form>
-							<!-- End Profile Edit Form -->
 						</div>
-
-
-
 					</div>
-					<!-- End Bordered Tabs -->
-
 				</div>
 			</div>
 

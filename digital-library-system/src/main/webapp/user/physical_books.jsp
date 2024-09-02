@@ -1,4 +1,3 @@
-
 <%
 boolean isLoggedIn = Helper.isLoggedIn(session);
 if (isLoggedIn) {
@@ -25,9 +24,6 @@ List<Publishers> publishers = (List<Publishers>) session.getAttribute("publisher
 List<Genre> genres = (List<Genre>) session.getAttribute("genres");
 List<ShelfLocation> shelfLocations = (List<ShelfLocation>) session.getAttribute("shelfLocations");
 List<PhysicalBookBorrow> physicalBorrows = (List<PhysicalBookBorrow>) session.getAttribute("physicalBorrows");
-/* for (PhysicalBookBorrow physicalBorrow : physicalBorrows) {
-	System.out.print(physicalBorrow.getbook_id());
-} */
 %>
 
 <section class="section">
@@ -43,7 +39,7 @@ List<PhysicalBookBorrow> physicalBorrows = (List<PhysicalBookBorrow>) session.ge
 			data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 	<%
-	session.removeAttribute("ebookBorrowMsg"); // Clear the message after retrieving it
+	session.removeAttribute("ebookBorrowMsg");
 	}
 	%>
 	<div class="row">
@@ -53,8 +49,6 @@ List<PhysicalBookBorrow> physicalBorrows = (List<PhysicalBookBorrow>) session.ge
 					<div class="d-flex align-items-center justify-content-between">
 						<h5 class="card-title">Physical Books List</h5>
 					</div>
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -228,7 +222,6 @@ List<PhysicalBookBorrow> physicalBorrows = (List<PhysicalBookBorrow>) session.ge
 										</div>
 									</div></td>
 							</tr>
-
 							<%
 							}
 							}
@@ -236,7 +229,6 @@ List<PhysicalBookBorrow> physicalBorrows = (List<PhysicalBookBorrow>) session.ge
 
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

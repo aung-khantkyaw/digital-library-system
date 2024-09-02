@@ -4,7 +4,6 @@
 Users user = (Users) session.getAttribute("user");
 String fullURL = request.getRequestURL().toString();
 %>
-<!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 	<div class="d-flex align-items-center justify-content-between">
 		<a href="index.html" class="logo d-flex align-items-center"> <img
@@ -12,7 +11,6 @@ String fullURL = request.getRequestURL().toString();
 			class="d-none d-lg-block">Digital Library System</span>
 		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 	</div>
-	<!-- End Logo -->
 
 	<nav class="header-nav ms-auto">
 		<ul class="d-flex align-items-center">
@@ -23,7 +21,7 @@ String fullURL = request.getRequestURL().toString();
 					class="h-14 w-14 rounded-xl border-2 border-indigo-500"
 					width="30px" height="30px" /> <span
 					class="d-none d-md-block dropdown-toggle ps-2"><%=user.getUsername()%></span>
-			</a> <!-- End Profile Iamge Icon -->
+			</a> 
 
 				<ul
 					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -54,16 +52,11 @@ String fullURL = request.getRequestURL().toString();
 						href="../UserController?action=logout"> <i
 							class="bi bi-box-arrow-right"></i> <span>Logout</span>
 					</a></li>
-				</ul> <!-- End Profile Dropdown Items --></li>
-			<!-- End Profile Nav -->
+				</ul>
+			</li>
 		</ul>
 	</nav>
-	<!-- End Icons Navigation -->
 </header>
-<!-- End Header -->
-
-
-<!-- ======= Sidebar ======= -->
 
 <%
 if (user.getRole().equals("Admin")) {
@@ -75,7 +68,6 @@ if (user.getRole().equals("Admin")) {
 			class="nav-link <%=Helper.getLastPartWithoutExtension(fullURL).equals("dashboard") ? "" : "collapsed"%>"
 			href="dashboard.jsp"> <i class="ri-layout-3-line"></i> <span>Dashboard</span>
 		</a></li>
-		<!-- End Dashboard Nav -->
 
 		<li class="nav-heading">Book Details</li>
 
@@ -183,6 +175,7 @@ if (user.getRole().equals("Admin")) {
 		</a></li>
 
 		<!-- End Book Nav -->
+		
 		<li class="nav-heading">Borrow List</li>
 
 		<li class="nav-item"><a
@@ -202,7 +195,6 @@ if (user.getRole().equals("Admin")) {
 <%
 }
 %>
-<!-- End Sidebar-->
 
 <main id="main" class="main">
 	<div class="pagetitle">

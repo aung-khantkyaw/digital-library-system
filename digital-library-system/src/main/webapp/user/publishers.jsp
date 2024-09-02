@@ -23,11 +23,7 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between">
 						<h5 class="card-title">Publisher List</h5>
-
-
 					</div>
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -38,12 +34,8 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 						</thead>
 						<tbody>
 							<%
-							// Retrieve the shelfLocations list from the session
 							List<Publishers> publishers = (List<Publishers>) session.getAttribute("publishers");
-
-							// Check if the list is not null and not empty
 							if (publishers != null && !publishers.isEmpty()) {
-								// Iterate through the list and display the shelf locations
 								for (Publishers publisher : publishers) {
 							%>
 							<tr>
@@ -128,7 +120,6 @@ List<EBooks> ebookList = (List<EBooks>) session.getAttribute("ebookList");
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>

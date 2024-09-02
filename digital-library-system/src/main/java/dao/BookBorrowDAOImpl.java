@@ -47,12 +47,6 @@ public class BookBorrowDAOImpl implements BookBorrowDAO {
 	}
 
 	@Override
-	public PhysicalBookBorrow getPhysicalBorrowById(String borrow_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean addPhysicalBorrow(PhysicalBookBorrow physical_borrow) throws SQLException {
 		pstmt = connection.prepareStatement(addPhysicalBookBorrow_query);
 		pstmt.setString(1, physical_borrow.getUser_id());
@@ -75,11 +69,6 @@ public class BookBorrowDAOImpl implements BookBorrowDAO {
 		return rowsAffected > 0;
 	}
 
-	@Override
-	public boolean deletePhysicalBorrow(String borrow_id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	// Ebook borrow
 	String getAllEBookBorrows_query = "SELECT * FROM ebook_borrow";
@@ -104,12 +93,6 @@ public class BookBorrowDAOImpl implements BookBorrowDAO {
 	}
 
 	@Override
-	public EBookBorrow getEBookBorrowById(String borrow_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean addEBookBorrow(EBookBorrow ebook_borrow) throws SQLException {
 		pstmt = connection.prepareStatement(addEBookBorrow_query);
 		pstmt.setString(1, ebook_borrow.getUser_id());
@@ -119,18 +102,6 @@ public class BookBorrowDAOImpl implements BookBorrowDAO {
 		pstmt.setString(5, ebook_borrow.getStatus());
 		int rowsAffected = pstmt.executeUpdate();
 		return rowsAffected > 0;
-	}
-
-	@Override
-	public boolean updateEBookBorrow(EBookBorrow ebook_borrow) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteEBookBorrow(String borrow_id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

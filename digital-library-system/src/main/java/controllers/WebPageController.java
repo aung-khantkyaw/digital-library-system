@@ -54,7 +54,6 @@ public class WebPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String action = request.getParameter("action");
 		switch (action) {
 		case "books":
@@ -145,12 +144,9 @@ public class WebPageController extends HttpServlet {
 	}
 
 	private void ebook(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// Get the 'ebook' parameter from the request
 		String ebook = request.getParameter("ebook");
 
-		// Encode the ebook parameter to avoid issues with special characters in URLs
 		String encodedEbook = URLEncoder.encode(ebook, "UTF-8");
-		// Redirect to the 'ebook.jsp' page with the ebook parameter in the query string
 		response.sendRedirect(request.getContextPath() + "/user/ebook.jsp?ebook=" + encodedEbook);
 	}
 
@@ -331,10 +327,6 @@ public class WebPageController extends HttpServlet {
 			BookInfoDAO shelfLocationDAO = new BookInfoDAOImpl(connection);
 
 			List<ShelfLocation> shelfLocations = shelfLocationDAO.GetAllShelfLocation();
-
-//	        for (ShelfLocation location : shelfLocations) {
-//	            System.out.println("Shelf Location: " + location.getShelf_location() + location.getShelf_id());
-//	        }
 
 			HttpSession session = request.getSession();
 			session.setAttribute("shelfLocations", shelfLocations);

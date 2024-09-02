@@ -77,7 +77,7 @@ public class BookController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("WebPageController?action=books");
+		response.sendRedirect("WebPageController?action=books&user=false");
 	}
 
 	private void deletePhysicalBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -89,7 +89,7 @@ public class BookController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("WebPageController?action=books");
+		response.sendRedirect("WebPageController?action=books&user=false");
 	}
 
 	/**
@@ -112,7 +112,6 @@ public class BookController extends HttpServlet {
 			editEBook(request,response);
 			break;
 		}
-//		doGet(request, response);
 	}
 
 	private void editEBook(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -178,9 +177,9 @@ public class BookController extends HttpServlet {
 	                urlPart.write(urlFilePath);
 	            }
 
-	            response.sendRedirect("WebPageController?action=books");
+	            response.sendRedirect("WebPageController?action=books&user=false");
 	        } else {
-	            response.sendRedirect("WebPageController?action=books&error=updateFailed");
+	            response.sendRedirect("WebPageController?action=books&&user=false");
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -190,16 +189,13 @@ public class BookController extends HttpServlet {
 
 
 	private void addEBook(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-	    // Get the current date and format it
 		Date date = Calendar.getInstance().getTime();
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		formatter = new SimpleDateFormat("dd/MM/yy");
 	    
-	    // Retrieve form data
 	    String ebook_isbn = request.getParameter("ebook_isbn");
 	    String ebook_title = request.getParameter("ebook_title");
 
-	    // Handling ebook cover file
 	    Part coverPart = request.getPart("ebook_cover");
 	    String ebook_cover = coverPart.getSubmittedFileName();
 
@@ -208,25 +204,20 @@ public class BookController extends HttpServlet {
 	    String ebook_publisher = request.getParameter("ebook_publisher");
 	    String ebook_publish_date = request.getParameter("ebook_publsh_date");
 
-	    // Handling ebook URL (assuming this is also a file upload like a PDF)
 	    Part urlPart = request.getPart("ebook_url");
 	    String ebook_url_file = urlPart.getSubmittedFileName();
 
 		String registration_date = formatter.format(date);
 		
-	    // Create the EBooks object with the necessary data
 	    EBooks ebooks = new EBooks(ebook_isbn, ebook_title, ebook_cover, ebook_genre, ebook_author, ebook_publisher, ebook_publish_date, ebook_url_file, registration_date);
 	    
 	    try {
-	        // Insert the EBook record into the database
 	        boolean result = bookDAO.AddEBooks(ebooks);
 
 	        if (result) {
-	            // Define the upload paths for both the cover and the URL (PDF)
 	            String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 	            String urlUploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_files";
 
-	            // Ensure both directories exist
 	            File uploadDir = new File(uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdir();
@@ -237,19 +228,15 @@ public class BookController extends HttpServlet {
 	                urlUploadDir.mkdir();
 	            }
 
-	            // Save the cover image file
 	            String coverFilePath = uploadPath + File.separator + ebook_cover;
 	            coverPart.write(coverFilePath);
 
-	            // Save the ebook URL file (e.g., a PDF)
 	            String urlFilePath = urlUploadPath + File.separator + ebook_url_file;
 	            urlPart.write(urlFilePath);
 
-	            // Redirect to the books page on success
-	            response.sendRedirect("WebPageController?action=books");
+	            response.sendRedirect("WebPageController?action=books&user=false");
 	        } else {
-	            // Redirect to the books page even on failure
-	            response.sendRedirect("WebPageController?action=books");
+	            response.sendRedirect("WebPageController?action=books&user=false");
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -293,9 +280,8 @@ public class BookController extends HttpServlet {
 
 		try {
 			boolean result = bookDAO.EditPhysicalBooksDetail(physicalbooks);
-			if (result) { // Dynamic path retrieval
+			if (result) {
 				if (!physicalbook_cover.equals(existingBook.getCover())) {
-					// Save the new file if a new file is uploaded
 					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
@@ -306,9 +292,9 @@ public class BookController extends HttpServlet {
 					part.write(filePath);
 				}
 				
-				response.sendRedirect("WebPageController?action=books");
+				response.sendRedirect("WebPageController?action=books&user=false");
 			} else {
-				response.sendRedirect("WebPageController?action=books");
+				response.sendRedirect("WebPageController?action=books&user=false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -352,9 +338,9 @@ public class BookController extends HttpServlet {
 				String filePath = uploadPath + File.separator + physicalbook_cover;
 				part.write(filePath);
 
-				response.sendRedirect("WebPageController?action=books");
+				response.sendRedirect("WebPageController?action=books&user=false");
 			} else {
-				response.sendRedirect("WebPageController?action=books");
+				response.sendRedirect("WebPageController?action=books&user=false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

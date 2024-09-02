@@ -21,6 +21,7 @@ public class BooksDAOImpl implements BooksDAO {
 	public BooksDAOImpl(Connection connection) {
 		this.connection = connection;
 	}
+	
 	/* Physical Books */
 
 	public String getphysicalbooks_query = "SELECT * FROM physical_book";

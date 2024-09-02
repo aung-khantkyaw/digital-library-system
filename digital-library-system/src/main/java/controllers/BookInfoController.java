@@ -56,7 +56,6 @@ public class BookInfoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String action = request.getParameter("action");
 		if (action == null) {
 			action = "pageNotFound";
@@ -92,7 +91,7 @@ public class BookInfoController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("WebPageController?action=publishers");
+		response.sendRedirect("WebPageController?action=publishers&user=false");
 
 	}
 
@@ -158,7 +157,7 @@ public class BookInfoController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("WebPageController?action=authors");
+		response.sendRedirect("WebPageController?action=authors&user=false");
 
 	}
 
@@ -169,7 +168,6 @@ public class BookInfoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
 
 		String action = request.getParameter("action");
 		if (action == null) {
@@ -202,18 +200,16 @@ public class BookInfoController extends HttpServlet {
 		String publisher_email = request.getParameter("publisher_email");
 		String publisher_phone = request.getParameter("publisher_phone");
 
-		// Retrieve the existing author data to keep the old profile if no new file is
-		// uploaded
 		Publishers existingPublisher = null;
 		try {
 			existingPublisher = bookInfoDAO.GetPublisherById(publisher_id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // Assuming you have this method
+		} 
 
 		if (publisher_profile == null || publisher_profile.isEmpty()) {
-			// Keep the existing profile if no new file is uploaded
+			
 			publisher_profile = existingPublisher.getPublisher_profile();
 		}
 
@@ -225,7 +221,7 @@ public class BookInfoController extends HttpServlet {
 
 			if (result) {
 				if (!publisher_profile.equals(existingPublisher.getPublisher_profile())) {
-					// Save the new file if a new file is uploaded
+					
 					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
@@ -236,9 +232,9 @@ public class BookInfoController extends HttpServlet {
 					part.write(filePath);
 				}
 
-				response.sendRedirect("WebPageController?action=publishers");
+				response.sendRedirect("WebPageController?action=publishers&user=false");
 			} else {
-				response.sendRedirect("WebPageController?action=publishers");
+				response.sendRedirect("WebPageController?action=publishers&user=false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -261,9 +257,7 @@ public class BookInfoController extends HttpServlet {
 		try {
 			boolean result = bookInfoDAO.AddPublisher(publisher);
 
-			if (result) { // Dynamic path retrieval
-				// String uploadPath = request.getServletContext().getRealPath("") +
-				// File.separator + "user_profile_images";
+			if (result) {
 
 				String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 				File uploadDir = new File(uploadPath);
@@ -274,9 +268,9 @@ public class BookInfoController extends HttpServlet {
 				String filePath = uploadPath + File.separator + publisher_profile;
 				part.write(filePath);
 
-				response.sendRedirect("WebPageController?action=publishers");
+				response.sendRedirect("WebPageController?action=publishers&user=false");
 			} else {
-				response.sendRedirect("WebPageController?action=publishers");
+				response.sendRedirect("WebPageController?action=publishers&user=false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -292,18 +286,15 @@ public class BookInfoController extends HttpServlet {
 		String author_profile = part.getSubmittedFileName(); // New file name
 		String author_bio = request.getParameter("author_bio");
 
-		// Retrieve the existing author data to keep the old profile if no new file is
-		// uploaded
 		Authors existingAuthor = null;
 		try {
 			existingAuthor = bookInfoDAO.GetAuthorById(author_id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // Assuming you have this method
+		} 
 
 		if (author_profile == null || author_profile.isEmpty()) {
-			// Keep the existing profile if no new file is uploaded
 			author_profile = existingAuthor.getAuthor_profile();
 		}
 
@@ -314,7 +305,6 @@ public class BookInfoController extends HttpServlet {
 
 			if (result) {
 				if (!author_profile.equals(existingAuthor.getAuthor_profile())) {
-					// Save the new file if a new file is uploaded
 					String uploadPath = request.getServletContext().getRealPath("") + File.separator + "book_info_images";
 					File uploadDir = new File(uploadPath);
 					if (!uploadDir.exists()) {
@@ -325,9 +315,9 @@ public class BookInfoController extends HttpServlet {
 					part.write(filePath);
 				}
 
-				response.sendRedirect("WebPageController?action=authors");
+				response.sendRedirect("WebPageController?action=authors&user=false");
 			} else {
-				response.sendRedirect("WebPageController?action=authors");
+				response.sendRedirect("WebPageController?action=authors&user=false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -346,9 +336,7 @@ public class BookInfoController extends HttpServlet {
 		try {
 			boolean result = bookInfoDAO.AddAuthor(author);
 
-			if (result) { // Dynamic path retrieval
-				// String uploadPath = request.getServletContext().getRealPath("") +
-				// File.separator + "user_profile_images";
+			if (result) { 
 
 				String uploadPath = request.getServletContext().getRealPath("") + File.separator +  "book_info_images";
 				File uploadDir = new File(uploadPath);
@@ -359,9 +347,9 @@ public class BookInfoController extends HttpServlet {
 				String filePath = uploadPath + File.separator + author_profile;
 				part.write(filePath);
 
-				response.sendRedirect("WebPageController?action=authors");
+				response.sendRedirect("WebPageController?action=authors&user=false");
 			} else {
-				response.sendRedirect("WebPageController?action=authors");
+				response.sendRedirect("WebPageController?action=authors&user=false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

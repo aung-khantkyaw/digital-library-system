@@ -76,7 +76,6 @@ public class BookBorrowController extends HttpServlet {
 			returnPhysicalBook(request, response);
 			break;
 		}
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	private void returnPhysicalBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -132,12 +131,10 @@ public class BookBorrowController extends HttpServlet {
 		Calendar calendar = Calendar.getInstance();
 		Date today = calendar.getTime();
 
-		// Add 7 days to the current date
 		calendar.add(Calendar.DAY_OF_YEAR, 7);
 		Date nextSeventhDay = calendar.getTime();
 
-		// Format the dates to 'dd/MM/yy'
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String borrow_date = formatter.format(today);
 		String due_date = formatter.format(nextSeventhDay);
 

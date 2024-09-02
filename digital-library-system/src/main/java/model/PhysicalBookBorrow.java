@@ -11,8 +11,6 @@ public class PhysicalBookBorrow {
 	private String pay_amount;
 	private String fine;
 
-	
-
 	public PhysicalBookBorrow(String borrow_id, String return_date, String status) {
 		super();
 		this.borrow_id = borrow_id;

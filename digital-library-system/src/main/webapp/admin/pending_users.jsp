@@ -6,9 +6,6 @@
 boolean isLoggedIn = Helper.isLoggedIn(session);
 if (isLoggedIn) {
 	List<Users> pending_users = (List<Users>) session.getAttribute("pending_users");
-	/* for (Users user : users) {
-		System.out.println(user.getUsername() + " in jsp " + user.getEmail());
-	} */
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -22,8 +19,6 @@ if (isLoggedIn) {
 					<div class="d-flex align-items-center justify-content-between">
 						<h5 class="card-title">Pending Users</h5>
 					</div>
-
-					<!-- Table with stripped rows -->
 					<table class="table datatable">
 						<thead>
 							<tr>
@@ -100,7 +95,6 @@ if (isLoggedIn) {
 							%>
 						</tbody>
 					</table>
-					<!-- End Table with stripped rows -->
 				</div>
 			</div>
 		</div>
