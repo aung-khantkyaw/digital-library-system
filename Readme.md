@@ -65,7 +65,7 @@ This project provides a web-based interface to access a digital library's resour
    SOURCE db_lbms.sql;
    ```
 
-6. Configure your database connection details in the project’s `persistence.xml` or related configuration file.
+6. Configure your database connection details in the project’s `DatabaseConnection.java`.
 
 7. Start the server and access the application in the browser:
    ```
@@ -87,7 +87,7 @@ The `db_lbms.sql` file provides the database schema, which includes the followin
 ### **Tables**
 
 - **Users**: Storing user information and roles.
-  - Columns: `user_id`, `username`, `password`, `password_key`, `email`, `phone_number`, `profile`, `address`, `role`, `status`.
+  - Columns: `user_id`, `username`, `password`, `password_key`, `email`, `phone_number`, `profile`, `address`, `role`, `status`, `registration_date`.
 
 - **Authors**: Storing information about the authors of books.
   - Columns: `author_id`, `author_name`, `author_profile`, `author_biography`.
@@ -102,16 +102,16 @@ The `db_lbms.sql` file provides the database schema, which includes the followin
   - Columns: `shelf_id`, `shelf_location`.
 
 - **Physical Books**: Storing details about physical books in the library.
-  - Columns: `ISBN`, `title`, `cover`, `genre_id`, `author_id`, `publisher_id`, `publish_date`, `shelf_id`, `quantity`, `status`.
+  - Columns: `book_id`, `ISBN`, `title`, `cover`, `genre_id`, `author_id`, `publisher_id`, `publish_date`, `shelf_id`, `quantity`, `status`, `registration_date`.
 
 - **Ebooks**: Storing details about ebooks in the library.
-  - Columns: `ISBN`, `title`, `cover`, `genre_id`, `author_id`, `publisher_id`, `publish_date`, `url`.
+  - Columns: `book_id`, `ISBN`, `title`, `cover`, `genre_id`, `author_id`, `publisher_id`, `publish_date`, `url`, `registration_date`.
 
 - **Physical Borrowing Transactions**: Tracking the borrowing and returning of physical books by users.
-  - Columns: `borrow_id`, `user_id`, `ISBN`, `borrow_date`, `due_date`, `return_date`, `status`, `pay_amount`, `fine`.
+  - Columns: `borrow_id`, `user_id`, `book_id`, `borrow_date`, `due_date`, `return_date`, `status`, `pay_amount`, `fine`.
 
 - **Ebook Borrowing Transactions**: Tracking the borrowing and returning of ebooks by users.
-  - Columns: `borrow_id`, `user_id`, `ISBN`, `borrow_date`, `due_date`, `status`.
+  - Columns: `borrow_id`, `user_id`, `book_id`, `borrow_date`, `due_date`, `status`.
 
 ### **Triggers**
 
@@ -125,6 +125,8 @@ The `db_lbms.sql` file provides the database schema, which includes the followin
 
 - **`ebook_return_trigger`**: Trigger that automatically sets the status of an ebook borrowing transaction to "Returned" if the due date has passed.
 
+### **Events**
+- **`ebook_return_event`**: CREATE DEFINER=`root`@`localhost` EVENT `update_overdue_books` ON SCHEDULE EVERY 1 DAY STARTS '2024-08-24 00:09:12' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN UPDATE ebook_borrow SET status = 'Returned' WHERE due_date < CURDATE(); END
 ---
 
 This schema ensures the proper functioning of the digital library system by managing user roles, books, authors, publishers, genres, shelf locations, and borrowing transactions. The triggers enforce business logic such as availability checks, status updates, and fine calculations.
