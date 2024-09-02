@@ -49,25 +49,19 @@ This project provides a web-based interface to access a digital library's resour
 
 2. Import the J2EE project in your favorite IDE (e.g., Eclipse or IntelliJ).
 
-3. Build the project using Maven:
+3. Deploy the project to your local Tomcat server. (I use Tomcat server 10.1 version.)
 
-   ```bash
-   mvn clean install
-   ```
-
-4. Deploy the project to your local Tomcat server.
-
-5. Create the database and import the schema:
+4. Create the database and import the schema:
 
    ```sql
    CREATE DATABASE digital_library_system;
    USE digital_library_system;
-   SOURCE db_lbms.sql;
+   SOURCE digital_library_system.sql;
    ```
 
-6. Configure your database connection details in the project’s `DatabaseConnection.java`.
+5. Configure your database connection details in the project’s `DatabaseConnection.java`.
 
-7. Start the server and access the application in the browser:
+6. Start the server and access the application in the browser:
    ```
    http://localhost:8080/digital-library-system
    ```
